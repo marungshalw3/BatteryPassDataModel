@@ -33,20 +33,27 @@ specific one, export `JAVA=/path/to/bin/java`.
 
 ### 2. The SAMM CLI jar
 
-Download the executable jar from the
-[esmf-sdk releases](https://github.com/eclipse-esmf/esmf-sdk/releases) and place
-it next to this script as `samm-cli.jar` (the script also looks one directory
-up):
+The jar (~178 MB) is **not committed to git**. Install it into this folder with
+the bundled helper:
 
 ```bash
-cd "$(dirname "$0")"   # this BatteryPass/ folder
+cd BatteryPass
+./download-samm-cli.sh            # fetches samm-cli.jar (v2.14.3) here
+./download-samm-cli.sh 2.14.3     # or pin a specific esmf-sdk version
+```
+
+Or download it manually from the
+[esmf-sdk releases](https://github.com/eclipse-esmf/esmf-sdk/releases) and place
+it next to the scripts as `samm-cli.jar`:
+
+```bash
 curl -L -o samm-cli.jar \
   https://github.com/eclipse-esmf/esmf-sdk/releases/download/v2.14.3/samm-cli-2.14.3.jar
 ```
 
-> The jar is ~178 MB — keep it **out of git** (it's listed in `.gitignore`).
-> Override its location with `SAMM_JAR=/path/to/samm-cli.jar` if you store it
-> elsewhere.
+> It's listed in `.gitignore`, so it stays out of git. The scripts look for it
+> next to themselves, then one directory up. Override with
+> `SAMM_JAR=/path/to/samm-cli.jar` if you store it elsewhere.
 
 ### 3. Bash
 

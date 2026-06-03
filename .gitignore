@@ -1,3 +1,7 @@
 # SAMM CLI (large, downloaded locally — see BatteryPass/README.md)
 samm-cli.jar
 **/samm-cli.jar
+
+# macOS
+.DS_Store
+**/.DS_Store
