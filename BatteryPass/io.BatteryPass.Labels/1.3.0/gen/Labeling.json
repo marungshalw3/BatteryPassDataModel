@@ -1,0 +1,11 @@
+{
+  "declarationOfConformity" : "https://example.com/oLoJTPGefB",
+  "resultOfTestReport" : "https://example.com/odiV7UG",
+  "labels" : [ {
+    "labelingSymbol" : "https://example.com/M8zHztdvb",
+    "labelingMeaning" : {
+      "en" : "Separate Collection"
+    },
+    "labelingSubject" : "SeparateCollection"
+  } ]
+}

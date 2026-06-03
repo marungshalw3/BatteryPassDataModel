@@ -1,13 +1,18 @@
 # Transition Plan — Battery Pass Data Model v1.2 → v1.3
 
-> Status: **DRAFT — TTL authoring GATED on rename-map review (§4–§5)**
+> Status: **AUTHORED — all seven `1.3.0` TTLs created and validated (2026-06-03)**
 >
-> **Decisions locked:** (2) new identifier/info objects modelled using SAMM +
+> **Decisions applied:** (2) new identifier/info objects modelled using SAMM +
 > DIN DKE Spec 99100 judgement; (3) all aspects → `1.3.0`, **Performance based on
 > `1.2.1`** (others on `1.2.0`); (4) CarbonFootprint `kilogramperkilowatthour`
 > unit case-fix **included** in 1.3.0.
-> **Pending:** (1) user to review/correct the rename & consolidation mappings in
-> §4–§5 before any `.ttl` is authored.
+>
+> **Outcome:** Only **GeneralProductInformation** required substantive changes
+> (the new DPP-identity fields). The other six aspects were version bumps because
+> the `1.2.0` TTLs already modelled the v1.3 Excel changes (URI types via
+> `samm-c:ResourcePath`, arrays via `samm-c:List`, generic recycled-content
+> entity, `xsd:float` voltages). The Excel-level renames/consolidations in §4–§5
+> therefore mostly did **not** require TTL changes — noted per aspect in §3.
 > Scope: evolve the SAMM/TTL aspect models from `1.2.0` to `1.3.0`, driven by
 > `docs/1.3/2026_BatteryPass-Ready_DataAttributeLongList_v1.3.xlsx`.
 > Authoring note: **upstream has NOT published v1.3 TTLs** — the `v1.3` branch and

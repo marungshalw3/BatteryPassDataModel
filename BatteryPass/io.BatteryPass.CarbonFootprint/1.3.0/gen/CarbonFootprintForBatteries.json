@@ -1,0 +1,10 @@
+{
+  "batteryCarbonFootprint" : -36369.8,
+  "carbonFootprintPerLifecycleStage" : [ {
+    "lifecycleStage" : "RawMaterialExtraction",
+    "carbonFootprint" : -35855.2
+  } ],
+  "carbonFootprintPerformanceClass" : "qpBRX5yVAY",
+  "carbonFootprintStudy" : "https://example.com/ibtPZcC",
+  "absoluteCarbonFootprint" : -15812.0
+}

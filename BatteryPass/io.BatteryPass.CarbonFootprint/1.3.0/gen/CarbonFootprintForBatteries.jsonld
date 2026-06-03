@@ -1,0 +1,211 @@
+{
+  "@graph" : [ {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#kilogramperkilowatthour",
+    "@type" : "samm:Unit",
+    "samm:commonCode" : "kg CO2e/kWh",
+    "samm:symbol" : "CO2e/kWh"
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#AbsoluteCarbonFootprint",
+    "@type" : "samm-c:Measurement",
+    "samm:dataType" : {
+      "@id" : "xsd:double"
+    },
+    "samm-c:unit" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#kilogramm"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#kilogramm",
+    "@type" : "samm:Unit",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "Kilogramm Co2 Equivalent"
+    },
+    "samm:referenceUnit" : {
+      "@id" : "unit:kilogram"
+    },
+    "samm:symbol" : "kg"
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#BatteryCarbonFootprint",
+    "@type" : "samm-c:Measurement",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "The battery carbon footprint is an aggregation of the carbon footprint of the individual lifecycle stages"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:double"
+    },
+    "samm-c:unit" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#kilogramperkilowatthour"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#batteryCarbonFootprint",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "The carbon footprint of the battery, calculated as kg of carbon dioxide equivalent per one kWh of the total energy provided by the battery over its expected service life, as declared in the Carbon Footprint Declaration.\nDIN DKE Spec 99100 chapter reference: 6.3.2"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#BatteryCarbonFootprint"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#carbonFootprintStudy",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "A web link to get access to a public version of the study supporting the carbon footprint values.\n\nDIN DKE Spec 99100 chapter reference:  6.3.8"
+    },
+    "samm:characteristic" : {
+      "@id" : "samm-c:ResourcePath"
+    }
+  }, {
+    "@id" : "_:5367f2ed2fbbd020cc92f0e5dbbc896a",
+    "samm:property" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#absoluteCarbonFootprint"
+    },
+    "samm:optional" : {
+      "@value" : "true",
+      "@type" : "xsd:boolean"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#absoluteCarbonFootprint",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "As a non-mandatory data attribute, the battery passport should include the battery carbon footprint in absolute terms.\n\nThe absolute battery carbon footprint should be calculated as kilograms of carbon dioxide equivalent, without reference to the functional unit as prescribed by the battery regulation.\n\nDIN DKE Spec 99100 chapter reference: 6.3.10"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#AbsoluteCarbonFootprint"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#CarbonFootprintPerformanceClass",
+    "@type" : "samm-c:Code",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "EV, industrial and LMT batteries shall bear a conspicuous, clearly legible and indelible label indicating the carbon footprint of the battery and the carbon footprint performance class that the relevant battery model per manufacturing plant corresponds to. The carbon footprint performance class shall be accessible via the battery passport. A meaningful number of classes of performance will be developed (?) with category A being the best class with the lowest carbon footprint life cycle impact."
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#carbonFootprintPerformanceClass",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "The carbon footprint performance class that the relevant battery model per manufacturing plant corresponds to.\n\nDIN DKE Spec 99100 chapter reference:  6.3.7"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#CarbonFootprintPerformanceClass"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#carbonFootprint",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Carbon footprint of the individual lifecycle stage"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#CarbonFootprintValue"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#carbonFootprintPerLifecycleStage",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "The carbon footprint of the battery as share of total Battery Carbon Footprint, differentiated per life cycle stages raw material extraction, battery production, distribution and recycling.\n\nDIN DKE Spec 99100 chapter reference: \n6.3.3: Raw material extraction\n6.3.4: Main production\n6.3.5: Distrinution\n6.3.6: EoL/Recycling"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#CarbonFootprints"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#CarbonFootprints",
+    "@type" : "samm-c:List",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "CarbainFootprints per lifecycle stage"
+    },
+    "samm:dataType" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#CarbonFootprintPerLifecycleStageEntity"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#LifecycleStage",
+    "@type" : "samm-c:Enumeration",
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    },
+    "samm-c:values" : {
+      "@list" : [ "RawMaterialExtraction", "MainProduction", "Distribution", "Recycling" ]
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#CarbonFootprintForBatteries",
+    "@type" : "samm:Aspect",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "The battery passport must contain carbon footprint per functional unit of the battery as declared in the battery carbon footprint declaration in accordance with the entry into force of the implementing acts on the format of declaration. Reference: REGULATION (EU) 2023/1542 aka EU Battery Regulation"
+    },
+    "samm:see" : {
+      "@id" : "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32023R1542"
+    },
+    "samm:properties" : {
+      "@list" : [ {
+        "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#batteryCarbonFootprint"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#carbonFootprintPerLifecycleStage"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#carbonFootprintPerformanceClass"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#carbonFootprintStudy"
+      }, {
+        "@id" : "_:5367f2ed2fbbd020cc92f0e5dbbc896a"
+      } ]
+    },
+    "samm:operations" : {
+      "@list" : [ ]
+    },
+    "samm:events" : {
+      "@list" : [ ]
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#CarbonFootprintValue",
+    "@type" : "samm-c:Measurement",
+    "samm:dataType" : {
+      "@id" : "xsd:double"
+    },
+    "samm-c:unit" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#kilogramperkilowatthour"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#CarbonFootprintPerLifecycleStageEntity",
+    "@type" : "samm:Entity",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "The carbon footprint of the battery as share of total Battery Carbon Footprint, differentiated per life cycle stage raw material extraction, main production, distribution and end of life and recycling."
+    },
+    "samm:properties" : {
+      "@list" : [ {
+        "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#lifecycleStage"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#carbonFootprint"
+      } ]
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#lifecycleStage",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "The description of the life cycle stage "
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#LifecycleStage"
+    }
+  } ],
+  "@context" : {
+    "samm-e" : "urn:samm:org.eclipse.esmf.samm:entity:2.2.0#",
+    "unit" : "urn:samm:org.eclipse.esmf.samm:unit:2.2.0#",
+    "samm-c" : "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "samm" : "urn:samm:org.eclipse.esmf.samm:meta-model:2.2.0#",
+    "@vocab" : "urn:samm:io.BatteryPass.CarbonFootprint:1.3.0#"
+  }
+}

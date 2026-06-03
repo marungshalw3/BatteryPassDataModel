@@ -1,0 +1,698 @@
+{
+  "@graph" : [ {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryMass",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Mass of the entire battery in kilograms. Voluntary: if the battery is defined on pack or module level: also weight of the modules and/or cells.\n\nDIN DKE Spec chapter reference: 6.1.3.6"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#BatteryMassMeasurable"
+    },
+    "samm:exampleValue" : {
+      "@value" : "699",
+      "@type" : "xsd:float"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryStatus",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "BatteryStatus"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Lifecycle status of the battery. Status defined from a list, with the options suggested as follows: 'original', 'repurposed', 'reused', 'remanufactured', 'waste'.\n\nDIN DKE Spec chapter reference: 6.1.3.7"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#BatteryStatusEnumeration"
+    },
+    "samm:exampleValue" : "Original"
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batterySerialNumber",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "battery serial number"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Serial number of the individual battery item (individual-level identification). Batteries shall bear a batch or serial number, or product number or another element allowing their identification (Art. 38(6)).\n\nDIN DKE Spec chapter reference: 6.1.2.2"
+    },
+    "samm:characteristic" : {
+      "@id" : "samm-c:Text"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#facilityIdentifier",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "unique facility identifier"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Unique facility identifier of the manufacturing place (\"unique string of characters for the identification of locations or buildings involved in the value chain of a product\", ESPR Art. 2(33)).\n\nDIN DKE Spec chapter reference: 6.1.3.1"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#FacilityIdentifierCode"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#FacilityIdentifierCode",
+    "@type" : "samm-c:Code",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "facility identifier code"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ManufacturingPlace",
+    "@type" : "samm-c:SingleEntity",
+    "samm:see" : {
+      "@id" : "https://schema.org/PostalAddress"
+    },
+    "samm:dataType" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#PostalAddressEntity"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#PostalAddressEntity",
+    "@type" : "samm:Entity",
+    "samm:see" : {
+      "@id" : "https://schema.org/PostalAddress"
+    },
+    "samm:properties" : {
+      "@list" : [ {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#addressCountry"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#postalCode"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#streetAddress"
+      } ]
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#addressCountry",
+    "@type" : "samm:Property",
+    "samm:see" : {
+      "@id" : "https://schema.org/addressCountry"
+    },
+    "samm:characteristic" : {
+      "@id" : "samm-c:Text"
+    },
+    "samm:exampleValue" : "DE"
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#BatteryModelIdentifierCode",
+    "@type" : "samm-c:Code",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "battery model identifier code"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#dppLastUpdate",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "date-time of latest update of DPP"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Timestamp of the most recent update applied to this digital product passport."
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#DppLastUpdateTimestamp"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#DppLastUpdateTimestamp",
+    "@type" : "samm:Characteristic",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "DPP last update timestamp"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:dateTimeStamp"
+    }
+  }, {
+    "@id" : "_:6449c9abf30c676ee9772adad1105e6b",
+    "samm:property" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#dppGranularity"
+    },
+    "samm:optional" : {
+      "@value" : "true",
+      "@type" : "xsd:boolean"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#operatorInformation",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "OperatorInformation"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "State the name, trade name or mark, postal address, web ad-dress, e-mail address. Suggested reporting via a unique operator identifier (see requirements of unique battery identifier).\n\nDIN DKE Spec chapter reference: 6.1.2.3"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#OperatorInformation"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#OperatorInformation",
+    "@type" : "samm-c:SingleEntity",
+    "samm:dataType" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ContactInformationEntity"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryModelIdentifier",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "battery model identifier"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Identifier of the battery model (model-level identification). Batteries shall bear a model identification allowing their identification (Art. 38(6)).\n\nDIN DKE Spec chapter reference: 6.1.2.2"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#BatteryModelIdentifierCode"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#identifier",
+    "@type" : "samm:Property",
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#Identifier"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#Identifier",
+    "@type" : "samm-c:Code",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "EconomicOperatorCode"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Not demanded by the EU Battery Regulation"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#dppStatus",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "DPP status"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Lifecycle status of the digital product passport record itself."
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#DppStatusEnumeration"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#DppStatusEnumeration",
+    "@type" : "samm-c:Enumeration",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Lifecycle status of the digital product passport record."
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    },
+    "samm-c:values" : {
+      "@list" : [ "Active", "Inactive", "Expired" ]
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ManufacturerInformation",
+    "@type" : "samm-c:SingleEntity",
+    "samm:dataType" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ContactInformationEntity"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ContactInformationEntity",
+    "@type" : "samm:Entity",
+    "samm:properties" : {
+      "@list" : [ {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#contactName"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#postalAddress"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#identifier"
+      }, {
+        "@id" : "_:1eed5f6d717116af90bbc771c2bdc3f6"
+      }, {
+        "@id" : "_:2ec21f4f49b34eb1cd4f375667e23ea5"
+      } ]
+    }
+  }, {
+    "@id" : "_:6f4912552c7cdc3a1dddeaff2764e1d3",
+    "samm:property" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#dppLastUpdate"
+    },
+    "samm:optional" : {
+      "@value" : "true",
+      "@type" : "xsd:boolean"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#dppGranularity",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "DPP granularity"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Granularity level at which this passport applies: model, batch or individual item."
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#DppGranularityEnumeration"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#DppGranularityEnumeration",
+    "@type" : "samm-c:Enumeration",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Granularity level at which the passport applies."
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    },
+    "samm-c:values" : {
+      "@list" : [ "Model", "Batch", "Item" ]
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryPassportIdentifier",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "BatteryPassportIdentifier"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Unique identifier allowing for the unambiguous identification of each individual battery and hence each corresponding battery passport (exploration of a potential additional battery passport identifier (not requried per Battery Regulation) ongoing)."
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ProductPassportIdentifierTrait"
+    },
+    "samm:exampleValue" : "urn:bmwk:123456687678"
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#manufacturingPlace",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "ManufacturingPlace"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Unambiguous identification of the manufacturing facility (e.g. country, city, street, building (if needed)), suggested via a unique facility identifier (as \"unique string of characters for the identification of locations or buildings involved in the value chain of a product or used by actors involved in the value chain of a product\", ESPR Art. 2(33)).\n\nDIN DKE Spec chapter reference: 6.1.3.1"
+    },
+    "samm:see" : {
+      "@id" : "https://schema.org/PostalAddress"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ManufacturingPlace"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryCategory",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "BatteryCategory"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Categories relevant for the battery passport: LMT battery, ?electric vehicle battery, stationary or other industrial battery >2kWh.\n\nDIN DKE Spec chapter reference: 6.1.3.5"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#BatteryCategoryEnum"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#BatteryCategoryEnum",
+    "@type" : "samm-c:Enumeration",
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    },
+    "samm-c:values" : {
+      "@list" : [ "lmt", "ev", "industrial", "stationary" ]
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#WarrentyPeriod",
+    "@type" : "samm-c:Measurement",
+    "samm:dataType" : {
+      "@id" : "xsd:gMonth"
+    },
+    "samm-c:unit" : {
+      "@id" : "unit:month"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#productIdentifier",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "ProductIdentifier"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Unique identifier allowing for the unambiguous identification of each individual battery and hence each corresponding battery passport (exploration of a potential additional battery passport identifier (not requried per Battery Regulation) ongoing).\nDIN DKE Spec chapter reference: 6.1.2.2"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ProductIdentifierCode"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#GeneralProductInformation",
+    "@type" : "samm:Aspect",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Mandatory data: Product identification; manufacturer?s identification; manufacturing place; manufacturing date; battery category; battery weight; battery status (Annex VI, Part A and Annex XIII)\nCopyright ? 2023 Circulor (for and on behalf of the Battery Pass Consortium). This work is li-censed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold com-mercially and is given appropriate attribution."
+    },
+    "samm:properties" : {
+      "@list" : [ {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#productIdentifier"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryPassportIdentifier"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryModelIdentifier"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batterySerialNumber"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryCategory"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#manufacturerInformation"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#manufacturingDate"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryStatus"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#batteryMass"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#manufacturingPlace"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#operatorInformation"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#puttingIntoService"
+      }, {
+        "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#warrentyPeriod"
+      }, {
+        "@id" : "_:1d5f8f10b7fb7f67edfda2488a226e84"
+      }, {
+        "@id" : "_:bd395fe6ef33df60412c887201a3532f"
+      }, {
+        "@id" : "_:6449c9abf30c676ee9772adad1105e6b"
+      }, {
+        "@id" : "_:6f4912552c7cdc3a1dddeaff2764e1d3"
+      }, {
+        "@id" : "_:02b9b8b343d1aab6a4f20ecd299e2e33"
+      } ]
+    },
+    "samm:operations" : {
+      "@list" : [ ]
+    },
+    "samm:events" : {
+      "@list" : [ ]
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ManufacturingDateTimeStamp",
+    "@type" : "samm:Characteristic",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "ManufacturingDate"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Manufacturing date (month and year)\nRegulation Reference: Annex XIII (1a) ? Annex VI Part A (4); Annex VII Part B (1)"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:dateTimeStamp"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#BatteryStatusEnumeration",
+    "@type" : "samm-c:Enumeration",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Lifecycle status of the battery. Status defined from a list, with the options suggested as follows: 'original', 'repurposed', 'reused', 'remanufactured', 'waste'\n\nEUBR: Annex XIII (4c)"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    },
+    "samm-c:values" : {
+      "@list" : [ "Original", "Repurposed", "Reused", "Remanufactured", "Waste" ]
+    }
+  }, {
+    "@id" : "_:1eed5f6d717116af90bbc771c2bdc3f6",
+    "samm:property" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#emailAddress"
+    },
+    "samm:optional" : {
+      "@value" : "true",
+      "@type" : "xsd:boolean"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#manufacturerInformation",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "ManufacturerIdentification"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Unambiguous identification of the manufacturer of the battery, suggested via a unique operator identifier (as \"unique string of characters for the identification of actors involved in the value chain of products\", ESPR Art. 2(32)). \n\nDIN DKE Spec chapter reference: 6.1.2.4"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ManufacturerInformation"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#EmailAddressTrait",
+    "@type" : "samm-c:Trait",
+    "samm-c:baseCharacteristic" : {
+      "@id" : "samm-c:Text"
+    },
+    "samm-c:constraint" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ValidEmailAddress"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ValidEmailAddress",
+    "@type" : "samm-c:RegularExpressionConstraint",
+    "samm:value" : "^[w.-]+@[w.-]+.[A-Za-z]{2,}$"
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#puttingIntoService",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Where appropriate, the battery passport must include information on the date of putting the battery into service. BR Annex VI Part A (1); Art. 3(33); Art. 38(7); ESPR Art. 2(32)\n\nDIN DKE Spec chapter reference: 6.1.3.3"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#PuttingIntoServiceDateTime"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#dppSchemaVersion",
+    "@type" : "samm:Property",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "DPP schema version"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Version of the digital product passport data schema this passport was authored against (e.g. 1.3.0)."
+    },
+    "samm:characteristic" : {
+      "@id" : "samm-c:Text"
+    },
+    "samm:exampleValue" : "1.3.0"
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#warrentyPeriod",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "The battery passport must include information about the period for which the commercial warranty applies.\n\nDIN DKE Spec chapter reference: 6.1.3.4"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#WarrentyPeriod"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#postalAddress",
+    "@type" : "samm:Property",
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#PostalAddress"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#emailAddress",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "email address"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#EmailAddressTrait"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#PostalAddress",
+    "@type" : "samm-c:SingleEntity",
+    "samm:dataType" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#PostalAddressEntity"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#contactName",
+    "@type" : "samm:Property",
+    "samm:characteristic" : {
+      "@id" : "samm-c:Text"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#postalCode",
+    "@type" : "samm:Property",
+    "samm:see" : {
+      "@id" : "https://schema.org/postalCode"
+    },
+    "samm:characteristic" : {
+      "@id" : "samm-c:Text"
+    },
+    "samm:exampleValue" : "10719"
+  }, {
+    "@id" : "_:1d5f8f10b7fb7f67edfda2488a226e84",
+    "samm:property" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#dppSchemaVersion"
+    },
+    "samm:optional" : {
+      "@value" : "true",
+      "@type" : "xsd:boolean"
+    }
+  }, {
+    "@id" : "_:2ec21f4f49b34eb1cd4f375667e23ea5",
+    "samm:property" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#webAddress"
+    },
+    "samm:optional" : {
+      "@value" : "true",
+      "@type" : "xsd:boolean"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#webAddress",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Web address."
+    },
+    "samm:characteristic" : {
+      "@id" : "samm-c:ResourcePath"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#streetAddress",
+    "@type" : "samm:Property",
+    "samm:see" : {
+      "@id" : "https://schema.org/streetAddress"
+    },
+    "samm:characteristic" : {
+      "@id" : "samm-c:Text"
+    },
+    "samm:exampleValue" : "Hindenburgstr. 10"
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#CodeConstraint",
+    "@type" : "samm-c:RegularExpressionConstraint",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Code constraint for URN"
+    },
+    "samm:value" : "^urn:[a-z0-9]+:[a-z0-9]+$"
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#BatteryMassMeasurable",
+    "@type" : "samm-c:Measurement",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "Weight of the battery\nEUBR: Annex XIII (1a) ? Annex VI Part A (5)"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:float"
+    },
+    "samm-c:unit" : {
+      "@id" : "unit:kilogram"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#PuttingIntoServiceDateTime",
+    "@type" : "samm:Characteristic",
+    "samm:dataType" : {
+      "@id" : "xsd:dateTime"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#manufacturingDate",
+    "@type" : "samm:Property",
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "The manufacturing date should not only relate to the battery model, but to the battery item.\n\nThe date code should comply with DIN ISO 8601 1:2020 12 and ISO 8601 2:2019.\n\nDIN DKE Spec chapter reference: 6.1.3.2"
+    },
+    "samm:characteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ManufacturingDateTimeStamp"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ProductPassportIdentifierTrait",
+    "@type" : "samm-c:Trait",
+    "samm-c:baseCharacteristic" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ProductPassportIdentifierCode"
+    },
+    "samm-c:constraint" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#CodeConstraint"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ProductPassportIdentifierCode",
+    "@type" : "samm-c:Code",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "ProductPassportIdentifierCode"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "A unique identifier is defined as \"a unique string of characters for the identification of batteries that also enables a web link to the battery passport\" (Art. 3(66)), to be attributed by the economic operator placing the battery on the market (Art. 77(3)). The unique identifier shall comply with the standard (?ISO/IEC?) 15459:2015 or equivalent (Art. 77(3)). A QR code shall provide access to the battery passport and be linked to the unique identifier (Art. 77(3)). Batteries shall ?bear a model identification and batch or serial number, or product number or another element allowing their identification? (Art. 38(6)). \n\nBattery Regulation Reference: Art. 77(3); Art. 3(66); Art. 38(6)"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ProductIdentifierCode",
+    "@type" : "samm-c:Code",
+    "samm:preferredName" : {
+      "@language" : "en",
+      "@value" : "ProductIdentifierCode"
+    },
+    "samm:description" : {
+      "@language" : "en",
+      "@value" : "A unique identifier is defined as \"a unique string of characters for the identification of batteries that also enables a web link to the battery passport\" (Art. 3(66)), to be attributed by the economic operator placing the battery on the market (Art. 77(3)). The unique identifier shall comply with the standard (?ISO/IEC?) 15459:2015 or equivalent (Art. 77(3)). A QR code shall provide access to the battery passport and be linked to the unique identifier (Art. 77(3)). Batteries shall ?bear a model identification and batch or serial number, or product number or another element allowing their identification? (Art. 38(6)). \n\nBattery Regulation Reference: Art. 77(3); Art. 3(66); Art. 38(6)"
+    },
+    "samm:dataType" : {
+      "@id" : "xsd:string"
+    }
+  }, {
+    "@id" : "_:02b9b8b343d1aab6a4f20ecd299e2e33",
+    "samm:property" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#facilityIdentifier"
+    },
+    "samm:optional" : {
+      "@value" : "true",
+      "@type" : "xsd:boolean"
+    }
+  }, {
+    "@id" : "_:bd395fe6ef33df60412c887201a3532f",
+    "samm:property" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#dppStatus"
+    },
+    "samm:optional" : {
+      "@value" : "true",
+      "@type" : "xsd:boolean"
+    }
+  }, {
+    "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#Characteristic4",
+    "@type" : "samm:Characteristic",
+    "samm:dataType" : {
+      "@id" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#ContactInformationEntity"
+    }
+  } ],
+  "@context" : {
+    "samm-e" : "urn:samm:org.eclipse.esmf.samm:entity:2.2.0#",
+    "unit" : "urn:samm:org.eclipse.esmf.samm:unit:2.2.0#",
+    "samm-c" : "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "samm" : "urn:samm:org.eclipse.esmf.samm:meta-model:2.2.0#",
+    "@vocab" : "urn:samm:io.BatteryPass.GeneralProductInformation:1.3.0#"
+  }
+}

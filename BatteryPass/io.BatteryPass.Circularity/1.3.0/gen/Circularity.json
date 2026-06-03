@@ -1,0 +1,36 @@
+{
+  "dismantlingAndRemovalInformation" : [ {
+    "documentType" : "BillOfMaterial",
+    "mimeType" : "k7Ni",
+    "documentURL" : "https://example.com/eYWrQqGuZk"
+  } ],
+  "sparePartSources" : [ {
+    "nameOfSupplier" : "P",
+    "addressOfSupplier" : {
+      "addressCountry" : "Germany",
+      "postalCode" : "DE-10719",
+      "streetAddress" : "Street 1"
+    },
+    "emailAddressOfSupplier" : "yERdxh.G0ZrX6EHS865AxnHKRtM_Sh9TZzP2cqhNeYEywywKT2TXLS.04WjgQjpj6sMctrdEElPZ5PIfh1z@qeV3vAN24niVbioVvhGp3.f7K5OQj77V37bMS2_i.bmxwlCCU2-nkgEJOfoT5mW_KBW6SH2.Rpag_SD2vfNGvlEqfQGn5.VvJsjubKgnMjMHpVMFwtPUJqpKQlYgiHUFYUgUgLnuEyGIaCLFaIOwizcSzmNvelwwyoPMesRv",
+    "supplierWebAddress" : "https://example.com/7dZB5",
+    "components" : [ {
+      "partName" : "Cell",
+      "partNumber" : "aSPkclZ"
+    } ]
+  } ],
+  "recycledContent" : [ {
+    "preConsumerShare" : 30.41,
+    "recycledMaterial" : "Cobalt",
+    "postConsumerShare" : 69.78
+  } ],
+  "safetyMeasures" : {
+    "safetyInstructions" : "https://example.com/86muIxRU",
+    "extinguishingAgents" : [ "niMzUQMi0" ]
+  },
+  "endOfLifeInformation" : {
+    "wastePrevention" : "https://example.com/M6Rflaxjdh",
+    "separateCollection" : "https://example.com/2rhnh",
+    "informationOnCollection" : "https://example.com/dzDOG"
+  },
+  "renewableContent" : -44511.4
+}
