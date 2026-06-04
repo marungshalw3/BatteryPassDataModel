@@ -1,0 +1,264 @@
+{
+  "CarbonFootprint": {
+    "absoluteCarbonFootprint": -15812.0,
+    "batteryCarbonFootprint": -36369.8,
+    "carbonFootprintPerLifecycleStage": [
+      {
+        "carbonFootprint": -35855.2,
+        "lifecycleStage": "RawMaterialExtraction"
+      }
+    ],
+    "carbonFootprintPerformanceClass": "qpBRX5yVAY",
+    "carbonFootprintStudy": "https://example.com/ibtPZcC"
+  },
+  "Circularity": {
+    "dismantlingAndRemovalInformation": [
+      {
+        "documentType": "BillOfMaterial",
+        "documentURL": "https://example.com/eYWrQqGuZk",
+        "mimeType": "k7Ni"
+      }
+    ],
+    "endOfLifeInformation": {
+      "informationOnCollection": "https://example.com/dzDOG",
+      "separateCollection": "https://example.com/2rhnh",
+      "wastePrevention": "https://example.com/M6Rflaxjdh"
+    },
+    "recycledContent": [
+      {
+        "postConsumerShare": 69.78,
+        "preConsumerShare": 30.41,
+        "recycledMaterial": "Cobalt"
+      }
+    ],
+    "renewableContent": -44511.4,
+    "safetyMeasures": {
+      "extinguishingAgents": [
+        "niMzUQMi0"
+      ],
+      "safetyInstructions": "https://example.com/86muIxRU"
+    },
+    "sparePartSources": [
+      {
+        "addressOfSupplier": {
+          "addressCountry": "Germany",
+          "postalCode": "DE-10719",
+          "streetAddress": "Street 1"
+        },
+        "components": [
+          {
+            "partName": "Cell",
+            "partNumber": "aSPkclZ"
+          }
+        ],
+        "emailAddressOfSupplier": "yERdxh.G0ZrX6EHS865AxnHKRtM_Sh9TZzP2cqhNeYEywywKT2TXLS.04WjgQjpj6sMctrdEElPZ5PIfh1z@qeV3vAN24niVbioVvhGp3.f7K5OQj77V37bMS2_i.bmxwlCCU2-nkgEJOfoT5mW_KBW6SH2.Rpag_SD2vfNGvlEqfQGn5.VvJsjubKgnMjMHpVMFwtPUJqpKQlYgiHUFYUgUgLnuEyGIaCLFaIOwizcSzmNvelwwyoPMesRv",
+        "nameOfSupplier": "P",
+        "supplierWebAddress": "https://example.com/7dZB5"
+      }
+    ]
+  },
+  "GeneralProductInformation": {
+    "batteryCategory": "lmt",
+    "batteryMass": 699.0,
+    "batteryModelIdentifier": "NKZAefN9k",
+    "batteryPassportIdentifier": "urn:bmwk:123456687678",
+    "batterySerialNumber": "TP",
+    "batteryStatus": "Original",
+    "dppGranularity": "Model",
+    "dppLastUpdate": "2026-06-03T19:14:06.000Z",
+    "dppSchemaVersion": "1.3.0",
+    "dppStatus": "Active",
+    "facilityIdentifier": "WI9d8",
+    "manufacturerInformation": {
+      "contactName": "K3tcJ4Yrx",
+      "emailAddress": "w.--.-...w---w--w-.---ww.wwww.-w-w.----.-..-..---...w.-w..-w.w...w-.ww--.-.-..ww.@.w-w-w--ww--w..-ww--wwww-..-..wwww--ww--....w-ww-..-.w.....-w-.w-.wwGGemagQZApUUiqXrJaEczCvAkoSMfhAOLDuDJoUdRNRSVzbXFbarsqxZTQQqGfMQNEYfphApfKlMQKVxBSNNLNkFPwaqzYQGPyTD",
+      "identifier": "RcnFwnr3wl",
+      "postalAddress": {
+        "addressCountry": "DE",
+        "postalCode": "10719",
+        "streetAddress": "Hindenburgstr. 10"
+      },
+      "webAddress": "https://example.com/XtTdXTK"
+    },
+    "manufacturingDate": "2026-06-03T19:14:06.000Z",
+    "manufacturingPlace": {
+      "addressCountry": "DE",
+      "postalCode": "10719",
+      "streetAddress": "Hindenburgstr. 10"
+    },
+    "operatorInformation": {
+      "contactName": "z7MUgb",
+      "identifier": "MhXJznk",
+      "postalAddress": {
+        "addressCountry": "DE",
+        "postalCode": "10719",
+        "streetAddress": "Hindenburgstr. 10"
+      }
+    },
+    "productIdentifier": "PR",
+    "puttingIntoService": "2026-06-03T19:14:06.000Z",
+    "warrentyPeriod": "--06"
+  },
+  "Labels": {
+    "declarationOfConformity": "https://example.com/oLoJTPGefB",
+    "labels": [
+      {
+        "labelingMeaning": {
+          "en": "Separate Collection"
+        },
+        "labelingSubject": "SeparateCollection",
+        "labelingSymbol": "https://example.com/M8zHztdvb"
+      }
+    ],
+    "resultOfTestReport": "https://example.com/odiV7UG"
+  },
+  "MaterialComposition": {
+    "batteryChemistry": {
+      "clearName": "Lithium nickel manganese cobalt oxides",
+      "shortName": "NMC"
+    },
+    "batteryMaterials": [
+      {
+        "batteryMaterialIdentifier": "7439-93-2",
+        "batteryMaterialLocation": {
+          "componentId": "XbSTZ",
+          "componentName": "Anode"
+        },
+        "batteryMaterialMass": -12470.6,
+        "batteryMaterialName": "Lithium",
+        "isCriticalRawMaterial": true
+      }
+    ],
+    "hazardousSubstances": [
+      {
+        "hazardousSubstanceClass": "AcuteToxicity",
+        "hazardousSubstanceConcentration": -72015.6,
+        "hazardousSubstanceIdentifier": "17175-88-8",
+        "hazardousSubstanceImpact": [
+          "KwWEKlXy"
+        ],
+        "hazardousSubstanceLocation": {
+          "componentName": "Anode"
+        },
+        "hazardousSubstanceName": "oFE81npQPX"
+      }
+    ]
+  },
+  "Performance": {
+    "batteryCondition": {
+      "capacityFade": {
+        "capacityFadeValue": -49682.0,
+        "lastUpdate": "2026-06-03T19:15:10.000Z"
+      },
+      "capacityThroughput": {
+        "capacityThroughputValue": -25898.0,
+        "lastUpdate": "2026-06-03T19:15:10.000Z"
+      },
+      "currentSelfDischargingRate": {
+        "currentSelfDischargingRateValue": -92309.8,
+        "lastUpdate": "2026-06-03T19:15:10.000Z"
+      },
+      "energyThroughput": {
+        "energyThroughputValue": -68688.2,
+        "lastUpdate": "2026-06-03T19:15:10.000Z"
+      },
+      "evolutionOfSelfDischarge": {
+        "evolutionOfSelfDischargeValue": -19083.2,
+        "lastUpdate": "2026-06-03T19:15:10.000Z"
+      },
+      "internalResistanceIncrease": [
+        {
+          "batteryComponent": "pack",
+          "internalResistanceIncreaseValue": -65053.2,
+          "lastUpdate": "2026-06-03T19:15:10.000Z"
+        }
+      ],
+      "negativeEvents": [
+        {
+          "lastUpdate": "2026-06-03T19:15:10.000Z",
+          "negativeEvent": "o0DOl"
+        }
+      ],
+      "numberOfFullCycles": {
+        "lastUpdate": "2026-06-03T19:15:10.000Z",
+        "numberOfFullCyclesValue": 2784052410799246172
+      },
+      "remainingCapacity": {
+        "lastUpdate": "2026-06-03T19:15:10.000Z",
+        "remainingCapacityValue": -10342.6
+      },
+      "remainingEnergy": {
+        "lastUpdate": "2026-06-03T19:15:10.000Z",
+        "remainingEnergyValue": -49257.0
+      },
+      "remainingPowerCapability": {
+        "lastUpdate": "2026-06-03T19:15:10.000Z",
+        "remainingPowerCapabilityValue": {
+          "atSoC": 2542.0,
+          "powerCapabilityAt": -19971.8,
+          "rPCLastUpdated": "2026-06-03T19:15:10.000Z"
+        }
+      },
+      "remainingRoundTripEnergyEfficiency": {
+        "lastUpdate": "2026-06-03T19:15:10.000Z",
+        "remainingRoundTripEnergyEfficiencyValue": -57470.8
+      },
+      "stateOfCertifiedEnergy": {
+        "lastUpdate": "2026-06-03T19:15:10.000Z",
+        "stateOfCertifiedEnergyValue": -77691.6
+      },
+      "stateOfCharge": {
+        "lastUpdate": "2026-06-03T19:15:10.000Z",
+        "stateOfChargeValue": -14010.4
+      },
+      "temperatureInformation": {
+        "lastUpdate": "2026-06-03T19:15:10.000Z",
+        "timeExtremeHighTemp": -16347.2,
+        "timeExtremeHighTempCharging": -52102.2,
+        "timeExtremeLowTemp": -93290.0,
+        "timeExtremeLowTempCharging": -73031.2
+      }
+    },
+    "batteryTechnicalProperties": {
+      "cRate": 3161.0,
+      "cRateLifeCycleTest": -65655.6,
+      "capacityThresholdForExhaustion": -1814.4,
+      "expectedLifetime": -4106,
+      "expectedNumberOfCycles": -6418754821592586503,
+      "initialInternalResistance": [
+        {
+          "batteryComponent": "pack",
+          "ohmicResistance": -98488.6
+        }
+      ],
+      "initialSelfDischarge": -6444.6,
+      "lifetimeReferenceTest": "https://example.com/Mn67vY",
+      "maximumVoltage": 3650.0,
+      "minimumVoltage": -25011.8,
+      "nominalVoltage": -12695.8,
+      "originalPowerCapability": [
+        {
+          "atSoC": -81587.4,
+          "powerCapabilityAt": -31522.6
+        }
+      ],
+      "powerCapabilityRatio": -74593.2,
+      "powerFade": -60828.2,
+      "ratedCapacity": 3670.0,
+      "ratedEnergy": -61162.2,
+      "ratedMaximumPower": -8832.0,
+      "roundTripEfficiencyAt50PercentCycleLife": -46337.6,
+      "roundTripEfficiencyFade": -27687.4,
+      "roundtripEfficiency": -49103.2,
+      "temperatureRangeIdleState": {
+        "maximum": 200.0,
+        "minimum": -100.0
+      }
+    }
+  },
+  "SupplyChainDueDiligence": {
+    "supplyChainDueDiligenceReport": "https://example.com/rkueDpw",
+    "supplyChainIndicies": -28258.4,
+    "thirdPartyAussurances": "https://example.com/vSVJjr"
+  }
+}

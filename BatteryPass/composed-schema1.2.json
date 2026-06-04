@@ -1,0 +1,2692 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "battery-passport-eu-1.2",
+  "title": "EU Battery Passport composed schema (v1.2)",
+  "type": "object",
+  "properties": {
+    "CarbonFootprint": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#CarbonFootprintForBatteries",
+      "description": "The battery passport must contain carbon footprint per functional unit of the battery as declared in the battery carbon footprint declaration in accordance with the entry into force of the implementing acts on the format of declaration. Reference: REGULATION (EU) 2023/1542 aka EU Battery Regulation",
+      "type": "object",
+      "properties": {
+        "batteryCarbonFootprint": {
+          "description": "The carbon footprint of the battery, calculated as kg of carbon dioxide equivalent per one kWh of the total energy provided by the battery over its expected service life, as declared in the Carbon Footprint Declaration.\nDIN DKE Spec 99100 chapter reference: 6.3.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#batteryCarbonFootprint",
+          "$ref": "#/$defs/CarbonFootprint__BatteryCarbonFootprint"
+        },
+        "carbonFootprintPerLifecycleStage": {
+          "description": "The carbon footprint of the battery as share of total Battery Carbon Footprint, differentiated per life cycle stages raw material extraction, battery production, distribution and recycling.\n\nDIN DKE Spec 99100 chapter reference: \n6.3.3: Raw material extraction\n6.3.4: Main production\n6.3.5: Distrinution\n6.3.6: EoL/Recycling",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#carbonFootprintPerLifecycleStage",
+          "$ref": "#/$defs/CarbonFootprint__CarbonFootprints"
+        },
+        "carbonFootprintPerformanceClass": {
+          "description": "The carbon footprint performance class that the relevant battery model per manufacturing plant corresponds to.\n\nDIN DKE Spec 99100 chapter reference:  6.3.7",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#carbonFootprintPerformanceClass",
+          "$ref": "#/$defs/CarbonFootprint__CarbonFootprintPerformanceClass"
+        },
+        "carbonFootprintStudy": {
+          "description": "A web link to get access to a public version of the study supporting the carbon footprint values.\n\nDIN DKE Spec 99100 chapter reference:  6.3.8",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#carbonFootprintStudy",
+          "$ref": "#/$defs/CarbonFootprint__ResourcePath"
+        },
+        "absoluteCarbonFootprint": {
+          "description": "As a non-mandatory data attribute, the battery passport should include the battery carbon footprint in absolute terms.\n\nThe absolute battery carbon footprint should be calculated as kilograms of carbon dioxide equivalent, without reference to the functional unit as prescribed by the battery regulation.\n\nDIN DKE Spec 99100 chapter reference: 6.3.10",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#absoluteCarbonFootprint",
+          "$ref": "#/$defs/CarbonFootprint__AbsoluteCarbonFootprint"
+        }
+      },
+      "required": [
+        "batteryCarbonFootprint",
+        "carbonFootprintPerLifecycleStage",
+        "carbonFootprintPerformanceClass",
+        "carbonFootprintStudy"
+      ]
+    },
+    "Circularity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#Circularity",
+      "description": "Dismantling information (including at least: exploded diagrams of the battery system/pack showing the location of battery cells; disassembly sequences; type and number of fastening techniques to be unlocked; tools required for disassembly; warnings if risk of damaging parts exists; amount of cells used and layout); part numbers for components and contact details of sources for replacement spares; safety measures (Annex XIII (2b-d)); usable extinguishing agent (Annex VI, Part A(9)). 2024 Circulor (for and on behalf of the Battery Pass Consortium). This work is licensed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold commercially and is given appropriate attribution.",
+      "type": "object",
+      "properties": {
+        "dismantlingAndRemovalInformation": {
+          "description": "Dismantling and Removal information, including at least:- Exploded diagrams of the battery system/pack showing the location of battery cells- Disassembly sequences- Type and number of fastening techniques to be unlocked- Tools required for disassembly- Warnings if risk of damaging parts exists- Amount of cells used and layout. BR Annex XIII (2c)\n\nDIN DKE Spec 99100 chapter reference: 6.6.1.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#dismantlingAndRemovalInformation",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__DocumentationList"
+            }
+          ]
+        },
+        "sparePartSources": {
+          "description": "Contact details of sources for replacement spares. Postal address, including name and brand names, postal code and place, street and number, country, telephone, if any. BR Annex XIII (2b)\n\nDIN DKE Spec 99100 chapter reference: 6.6.1.3",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#sparePartSources",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__SparePartSourcesList"
+            }
+          ]
+        },
+        "recycledContent": {
+          "description": "Share of material recovered from waste present in active materials for each battery model per year and per manufacturing plant.\n\nDIN DKE Spec 99100 chapter reference:  6.6.2.3 - 6.6.2.10",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#recycledContent",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__RecycledContentList"
+            }
+          ]
+        },
+        "safetyMeasures": {
+          "description": "Safety measures and instructions should also take past negative and extreme events as well as the separate data attributes ?battery status? and ?battery composition/chemistry? into account.\n\nDIN DKE Spec 99100 chapter reference: 6.6.1.5",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#safetyMeasures",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__SafetyMeasures"
+            }
+          ]
+        },
+        "endOfLifeInformation": {
+          "description": "Producer or producer responsibility organisations shall make information available to distributors and end-users on: the role of end-users in contributing to waste prevention, including by information on good practices and recommendations concerning the use of batteries aiming at extending their use phase and the possibilities of re-use, preparing for re-use, preparing for repurpose, repurposing and remanufacturing.\n\nDIN DKE Spec 99100 chapter reference: 6.6.3.2 - 6.6.3.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#endOfLifeInformation",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__EndOfLifeInformation"
+            }
+          ]
+        },
+        "renewableContent": {
+          "description": "Share of renewable material content. A renewable material is a material made of natural resources that can be replenished. \n\nDIN DKE Spec 99100 chapter reference: 6.6.2.11",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#renewableContent",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__RenewableContent"
+            }
+          ]
+        }
+      },
+      "required": [
+        "dismantlingAndRemovalInformation",
+        "sparePartSources",
+        "recycledContent",
+        "safetyMeasures",
+        "endOfLifeInformation",
+        "renewableContent"
+      ]
+    },
+    "GeneralProductInformation": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#GeneralProductInformation",
+      "description": "Mandatory data: Product identification; manufacturer?s identification; manufacturing place; manufacturing date; battery category; battery weight; battery status (Annex VI, Part A and Annex XIII)\nCopyright ? 2023 Circulor (for and on behalf of the Battery Pass Consortium). This work is li-censed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold com-mercially and is given appropriate attribution.",
+      "type": "object",
+      "properties": {
+        "productIdentifier": {
+          "description": "Unique identifier allowing for the unambiguous identification of each individual battery and hence each corresponding battery passport (exploration of a potential additional battery passport identifier (not requried per Battery Regulation) ongoing).\nDIN DKE Spec chapter reference: 6.1.2.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#productIdentifier",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__ProductIdentifierCode"
+            }
+          ]
+        },
+        "batteryPassportIdentifier": {
+          "description": "Unique identifier allowing for the unambiguous identification of each individual battery and hence each corresponding battery passport (exploration of a potential additional battery passport identifier (not requried per Battery Regulation) ongoing).",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#batteryPassportIdentifier",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__ProductPassportIdentifierTrait"
+            }
+          ]
+        },
+        "batteryCategory": {
+          "description": "Categories relevant for the battery passport: LMT battery, ?electric vehicle battery, stationary or other industrial battery >2kWh.\n\nDIN DKE Spec chapter reference: 6.1.3.5",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#batteryCategory",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__BatteryCategoryEnum"
+            }
+          ]
+        },
+        "manufacturerInformation": {
+          "description": "Unambiguous identification of the manufacturer of the battery, suggested via a unique operator identifier (as \"unique string of characters for the identification of actors involved in the value chain of products\", ESPR Art. 2(32)). \n\nDIN DKE Spec chapter reference: 6.1.2.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#manufacturerInformation",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__ManufacturerInformation"
+            }
+          ]
+        },
+        "manufacturingDate": {
+          "description": "The manufacturing date should not only relate to the battery model, but to the battery item.\n\nThe date code should comply with DIN ISO 8601 1:2020 12 and ISO 8601 2:2019.\n\nDIN DKE Spec chapter reference: 6.1.3.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#manufacturingDate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__ManufacturingDateTimeStamp"
+            }
+          ]
+        },
+        "batteryStatus": {
+          "description": "Lifecycle status of the battery. Status defined from a list, with the options suggested as follows: 'original', 'repurposed', 'reused', 'remanufactured', 'waste'.\n\nDIN DKE Spec chapter reference: 6.1.3.7",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#batteryStatus",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__BatteryStatusEnumeration"
+            }
+          ]
+        },
+        "batteryMass": {
+          "description": "Mass of the entire battery in kilograms. Voluntary: if the battery is defined on pack or module level: also weight of the modules and/or cells.\n\nDIN DKE Spec chapter reference: 6.1.3.6",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#batteryMass",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__BatteryMassMeasurable"
+            }
+          ]
+        },
+        "manufacturingPlace": {
+          "description": "Unambiguous identification of the manufacturing facility (e.g. country, city, street, building (if needed)), suggested via a unique facility identifier (as \"unique string of characters for the identification of locations or buildings involved in the value chain of a product or used by actors involved in the value chain of a product\", ESPR Art. 2(33)).\n\nDIN DKE Spec chapter reference: 6.1.3.1",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#manufacturingPlace",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__ManufacturingPlace"
+            }
+          ]
+        },
+        "operatorInformation": {
+          "description": "State the name, trade name or mark, postal address, web ad-dress, e-mail address. Suggested reporting via a unique operator identifier (see requirements of unique battery identifier).\n\nDIN DKE Spec chapter reference: 6.1.2.3",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#operatorInformation",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__OperatorInformation"
+            }
+          ]
+        },
+        "puttingIntoService": {
+          "description": "Where appropriate, the battery passport must include information on the date of putting the battery into service. BR Annex VI Part A (1); Art. 3(33); Art. 38(7); ESPR Art. 2(32)\n\nDIN DKE Spec chapter reference: 6.1.3.3",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#puttingIntoService",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__PuttingIntoServiceDateTime"
+            }
+          ]
+        },
+        "warrentyPeriod": {
+          "description": "The battery passport must include information about the period for which the commercial warranty applies.\n\nDIN DKE Spec chapter reference: 6.1.3.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#warrentyPeriod",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__WarrentyPeriod"
+            }
+          ]
+        }
+      },
+      "required": [
+        "productIdentifier",
+        "batteryPassportIdentifier",
+        "batteryCategory",
+        "manufacturerInformation",
+        "manufacturingDate",
+        "batteryStatus",
+        "batteryMass",
+        "manufacturingPlace",
+        "operatorInformation",
+        "puttingIntoService",
+        "warrentyPeriod"
+      ]
+    },
+    "Labels": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#Labeling",
+      "description": "Data model for battery labels and conformity\n\nCopyright 2024 Circulor (for and on behalf of the Battery Pass Consortium). This work is li-censed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold com-mercially and is given appropriate attribution.",
+      "type": "object",
+      "properties": {
+        "declarationOfConformity": {
+          "description": "A battery passport must include the EU declaration of conformity.\n\nThe regulation specifies the following requirements regarding the EU declaration of conformity (see BattReg Annex XIII (1r) and BattReg Article 18 (2)):\n\n- The EU declaration of conformity has the model structure set out in Annex IX.\n- The EU declaration of conformity must contain the elements specified in the relevant modules set out in Annex VIII.\n- The EU declaration of conformity must be kept up to date.\n- It is translated into the language or languages required by the Member State in which the battery is placed or made available on the market or put into service.\n- It must be drawn up in electronic format and, where requested, it must be provided in paper format.\n\nDIN DKE Spec chapter reference: 6.2.7",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#declarationOfConformity",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Labels__ResourcePath"
+            }
+          ]
+        },
+        "resultOfTestReport": {
+          "description": "URL to a document that includes results of tests reports proving compliance in the market conformity assessment procedure with the requirements as per the technical documentation (Art. 7-10, Art. 12-14 and due diligence policies ).\n\nDIN DKE Spec chapter reference 6.2.8",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#resultOfTestReport",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Labels__ResourcePath"
+            }
+          ]
+        },
+        "labels": {
+          "description": "'Separate collection' or 'WEEE label' indicating that a product should not be discarded as unsorted waste but must be sent to separate collection facilities for recovery and recycling. To be printed on the physical label and displayed via the battery passport, suggested to be translated also to text to ensure machine readability.\n\nDIN DKE Spec chapter reference: \n\n6.2.2 Separate collection\n6.2.3 Material symbol for Cadmium and Lead\n6.2.4 Carbon Footprint perfromance class\n6.2.5 Extinguishing agent",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#labels",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Labels__Labels"
+            }
+          ]
+        }
+      },
+      "required": [
+        "declarationOfConformity",
+        "resultOfTestReport",
+        "labels"
+      ]
+    },
+    "MaterialComposition": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#MaterialComposition",
+      "description": "Mandatory data: Battery chemistry; critical raw materials; materials used in the cathode, anode, and \nelectrolyte; hazardous substances; impact of substances on the environment and on human health or \nsafety\n\nCopyright ? 2024 Circulor (for and on behalf of the Battery Pass Consortium). This work is li-censed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold com-mercially and is given appropriate attribution.",
+      "type": "object",
+      "properties": {
+        "batteryChemistry": {
+          "description": "Composition of a product in general terms by specifying the cathode and anode active material as well as electrolyte.\n\nDIN DKE Spec 99100 chapter reference: 6.5.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#batteryChemistry",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__BatteryChemistryEntityList"
+            }
+          ]
+        },
+        "batteryMaterials": {
+          "description": "\"Component materials used\" (No. 17.a-c): Naming the materials (as a composition of substances) in cathode, anode, electrolyte according to public standards, including specification of the corresponding component (i.e., cathode, anode, or electrolyte). We suggest a reporting threshold of 0.1 % weight by weight.\n\nDIN DKE Spec 99100 chapter reference: 6.5.3-6.5.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#batteryMaterials",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__BatteryMaterialList"
+            }
+          ]
+        },
+        "hazardousSubstances": {
+          "description": "\"Hazardous substances\" (No 20.a-e): Name (agreed substance nomenclature, e.g. IUPAC or chemical name) all hazardous substance (as ?any substance that poses a threat to human health and the environment?). Suggested above 0.1 % weight by weight within each (sub-)component.\n\nDIN DKE Spec 99100 chapter reference: 6.5.4 - 6.5.6",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#hazardousSubstances",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__HazardousSubstancesList"
+            }
+          ]
+        }
+      },
+      "required": [
+        "batteryChemistry",
+        "batteryMaterials",
+        "hazardousSubstances"
+      ]
+    },
+    "Performance": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#PerformanceAndDurability",
+      "description": "Battery performance and durability data model",
+      "type": "object",
+      "properties": {
+        "batteryTechnicalProperties": {
+          "description": "This property covers all perfromance related properties",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#batteryTechnicalProperties",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__BatteryTechnicalProperties"
+            }
+          ]
+        },
+        "batteryCondition": {
+          "description": "'- Expected battery lifetime expressed in cycles, and reference test used.\n- Their expected life-time under the reference conditions for which they have been designed in terms of cycles, except for non-cycle applications, and calendar years.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#batteryCondition",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__BatteryCondition"
+            }
+          ]
+        }
+      },
+      "required": [
+        "batteryTechnicalProperties",
+        "batteryCondition"
+      ]
+    },
+    "SupplyChainDueDiligence": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.SupplyChainDueDiligence:1.2.0#SupplyChainDueDiligence",
+      "description": "Data model for Battery due diligence\n\nCopyright ? 2024 Circulor (for and on behalf of the Battery Pass Consortium). This work is li-censed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold com-mercially and is given appropriate attribution.",
+      "type": "object",
+      "properties": {
+        "supplyChainDueDiligenceReport": {
+          "description": "The battery passport must include the �information on responsible sourcing as indicated in the report on its due diligence policy referred to in BattReg Article 52(3)�.\n\nThe due diligence report must be accessible free of charge to the public via the battery passport and also on the internet.\n\nThe report and hence also the information in the battery passport must provide data and information on four aspects:\n- Supply chain due diligence policy: steps taken by the economic operator to comply with the requirements of Article 49.\n- Risk management plan: steps taken by the economic operator to comply with the requirements of Article 50, including findings of significant adverse impacts.\n- Summary report of the third-party verification carried out (Article 51).\n- An elaboration on access to information, public participation in decision-making and access to justice.\n\nDIN DKE Spec 99100 chapter reference: 6.4.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.SupplyChainDueDiligence:1.2.0#supplyChainDueDiligenceReport",
+          "allOf": [
+            {
+              "$ref": "#/$defs/SupplyChainDueDiligence__ResourcePath"
+            }
+          ]
+        },
+        "thirdPartyAussurances": {
+          "description": "As a non-mandatory data attribute the battery passport should contain information on third-party supply chain assurances such as certifications, of recognised supply chain schemes. Based on the provided guidance, explore which and how to best make third-party assurances available via the battery passport\n\nDIN DKE Spec 99100 chapter reference: 6.4.3",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.SupplyChainDueDiligence:1.2.0#thirdPartyAussurances",
+          "allOf": [
+            {
+              "$ref": "#/$defs/SupplyChainDueDiligence__ResourcePath"
+            }
+          ]
+        },
+        "supplyChainIndicies": {
+          "description": "As a non-mandatory data attribute the battery passport should contain supply chain indices to allow easy assessment for consumers on level of responsible sourcing. ESGE+ indices under development by the GBA (Global Battery Alliance), scoring and benchmarking sustainability performance. Once developed, explore how to best make the indices available via the battery passport.\n\nDIN DKE Spec 99100 chapter reference: 6.4.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.SupplyChainDueDiligence:1.2.0#supplyChainIndicies",
+          "allOf": [
+            {
+              "$ref": "#/$defs/SupplyChainDueDiligence__SupplyChainIndicies"
+            }
+          ]
+        }
+      },
+      "required": [
+        "supplyChainDueDiligenceReport"
+      ]
+    }
+  },
+  "required": [
+    "CarbonFootprint",
+    "Circularity",
+    "GeneralProductInformation",
+    "Labels",
+    "MaterialComposition",
+    "Performance",
+    "SupplyChainDueDiligence"
+  ],
+  "$defs": {
+    "CarbonFootprint__AbsoluteCarbonFootprint": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#AbsoluteCarbonFootprint"
+    },
+    "CarbonFootprint__BatteryCarbonFootprint": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#BatteryCarbonFootprint",
+      "description": "The battery carbon footprint is an aggregation of the carbon footprint of the individual lifecycle stages"
+    },
+    "CarbonFootprint__CarbonFootprintPerLifecycleStageEntity": {
+      "description": "The carbon footprint of the battery as share of total Battery Carbon Footprint, differentiated per life cycle stage raw material extraction, main production, distribution and end of ´┐¢ife and recycling.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#CarbonFootprintPerLifecycleStageEntity",
+      "type": "object",
+      "properties": {
+        "lifecycleStage": {
+          "description": "The description of the life cycle stage ",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#lifecycleStage",
+          "$ref": "#/$defs/CarbonFootprint__LifecycleStage"
+        },
+        "carbonFootprint": {
+          "description": "Carbon footprint of the individual lifecycle stage",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#carbonFootprint",
+          "$ref": "#/$defs/CarbonFootprint__CarbonFootprintValue"
+        }
+      },
+      "required": [
+        "lifecycleStage",
+        "carbonFootprint"
+      ]
+    },
+    "CarbonFootprint__CarbonFootprintPerformanceClass": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#CarbonFootprintPerformanceClass",
+      "description": "EV, industrial and LMT batteries shall bear a conspicuous, clearly legible and indelible label indicating the carbon footprint of the battery and the carbon footprint performance class that the relevant battery model per manufacturing plant corresponds to. The carbon footprint performance class shall be accessible via the battery passport. A meaningful number of classes of performance will be developed (?) with category A being the best class with the lowest carbon footprint life cycle impact."
+    },
+    "CarbonFootprint__CarbonFootprintValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#CarbonFootprintValue"
+    },
+    "CarbonFootprint__CarbonFootprints": {
+      "description": "CarbainFootprints per lifecycle stage",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#CarbonFootprints",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CarbonFootprint__CarbonFootprintPerLifecycleStageEntity"
+      }
+    },
+    "CarbonFootprint__LifecycleStage": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.CarbonFootprint:1.2.0#LifecycleStage",
+      "enum": [
+        "RawMaterialExtraction",
+        "MainProduction",
+        "Distribution",
+        "Recycling"
+      ]
+    },
+    "CarbonFootprint__ResourcePath": {
+      "type": "string",
+      "format": "uri",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.1.0#ResourcePath",
+      "description": "The path of a resource."
+    },
+    "Circularity__AddressOfSupplier": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#AddressOfSupplier",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Circularity__PostalAddress"
+        }
+      ]
+    },
+    "Circularity__ComponentEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#ComponentEntity",
+      "type": "object",
+      "properties": {
+        "partName": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#partName",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__Text"
+            }
+          ]
+        },
+        "partNumber": {
+          "description": "Part Number of Component",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#partNumber",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__PartNumber"
+            }
+          ]
+        }
+      },
+      "required": [
+        "partName",
+        "partNumber"
+      ]
+    },
+    "Circularity__ComponentList": {
+      "description": "List of components available at supplier",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#ComponentList",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Circularity__ComponentEntity"
+      }
+    },
+    "Circularity__DismantlingAndRemovalDocumentation": {
+      "description": "Dismantling and Removal information, including at least:- Exploded diagrams of the battery system/pack showing the location of battery cells- Disassembly sequences- Type and number of fastening techniques to be unlocked- Tools required for disassembly- Warnings if risk of damaging parts exists- Amount of cells used and layoutEUBR: Annex XIII (2c)",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#DismantlingAndRemovalDocumentation",
+      "type": "object",
+      "properties": {
+        "documentType": {
+          "description": "Describes type for document e.g. Dismantling manual",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#documentType",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__Documenttype"
+            }
+          ]
+        },
+        "mimeType": {
+          "description": "Defines internet media typ to determin how to interpret the documentURL",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#mimeType",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__MimeType"
+            }
+          ]
+        },
+        "documentURL": {
+          "description": "Link to document",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#documentURL",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__ResourcePath"
+            }
+          ]
+        }
+      },
+      "required": [
+        "documentType",
+        "mimeType",
+        "documentURL"
+      ]
+    },
+    "Circularity__DocumentationList": {
+      "description": "A collection of required documentation to support EoL actions.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#DocumentationList",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Circularity__DismantlingAndRemovalDocumentation"
+      }
+    },
+    "Circularity__Documenttype": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#Documenttype",
+      "enum": [
+        "BillOfMaterial",
+        "Model3D",
+        "DismantlingManual",
+        "RemovalManual",
+        "OtherManual",
+        "Drawing"
+      ]
+    },
+    "Circularity__EmailAddressOfSupplierTrait": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#EmailAddressOfSupplierTrait",
+      "description": "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc.",
+      "pattern": "^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,}$"
+    },
+    "Circularity__EndOfLifeInformation": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#EndOfLifeInformation",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Circularity__EndOfLifeInformationEntity"
+        }
+      ]
+    },
+    "Circularity__EndOfLifeInformationEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#EndOfLifeInformationEntity",
+      "type": "object",
+      "properties": {
+        "wastePrevention": {
+          "description": "Prevention and management of waste batteries: Point (a) of Article 60(1): Information on the role of end-users in contributing to waste prevention, including by information on good practices and recommendations concerning the use of batteries aiming at extending their use phase and the possibilities of re-use, preparing for re-use, preparing for repurpose, repurposing and remanufacturing",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#wastePrevention",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__ResourcePath0"
+            }
+          ]
+        },
+        "separateCollection": {
+          "description": "Prevention and management of waste batteries: Point (b) of Article 60(1): Information on the role of end-users in contributing to the separate collection of waste batteries in accordance with their obligations under Article 51 so as to allow their treatment",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#separateCollection",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__ResourcePath0"
+            }
+          ]
+        },
+        "informationOnCollection": {
+          "description": "Prevention and management of waste batteries: Point (c) of Article 60(1): information on the separate collection, the take back, the collection points and preparing for re-use, preparing for repurposing, and recycling operations available for waste batteries",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#informationOnCollection",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__ResourcePath0"
+            }
+          ]
+        }
+      },
+      "required": [
+        "wastePrevention",
+        "separateCollection",
+        "informationOnCollection"
+      ]
+    },
+    "Circularity__ExtinguishingAgentsList": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#ExtinguishingAgentsList",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Circularity__MimeType": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#MimeType",
+      "description": "A MIME type as defined in RFC 2046, for example \"application/pdf\"."
+    },
+    "Circularity__PartNumber": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#PartNumber"
+    },
+    "Circularity__PostConsumerShareTrait": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#PostConsumerShareTrait",
+      "maximum": 100.0,
+      "minimum": 0.0
+    },
+    "Circularity__PostalAddress": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#PostalAddress",
+      "type": "object",
+      "properties": {
+        "addressCountry": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#addressCountry",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__Text"
+            }
+          ]
+        },
+        "postalCode": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#postalCode",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__Text"
+            }
+          ]
+        },
+        "streetAddress": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#streetAddress",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__Text"
+            }
+          ]
+        }
+      },
+      "required": [
+        "addressCountry",
+        "postalCode",
+        "streetAddress"
+      ]
+    },
+    "Circularity__PreConsumerShareTrait": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#PreConsumerShareTrait",
+      "maximum": 100.0,
+      "minimum": 0.0
+    },
+    "Circularity__RecycledContentEntity": {
+      "description": "A battery passport must include recycled content information.\n\nThe content information must include the percentage share of nickel that is present in active materials and that has been recovered from battery manufacturing waste, for each battery model per year and per manufacturing plant.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#RecycledContentEntity",
+      "type": "object",
+      "properties": {
+        "preConsumerShare": {
+          "description": "Recycled material share from pre-consumer waste (manufacturing waste, excluding run-around scrap) of the active material.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#preConsumerShare",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__PreConsumerShareTrait"
+            }
+          ]
+        },
+        "recycledMaterial": {
+          "description": "Name of recycled material",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#recycledMaterial",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__RecycledMaterial"
+            }
+          ]
+        },
+        "postConsumerShare": {
+          "description": "Recycled material share from post-consumer waste (end-of-life scrap) of the active material.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#postConsumerShare",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__PostConsumerShareTrait"
+            }
+          ]
+        }
+      },
+      "required": [
+        "preConsumerShare",
+        "recycledMaterial",
+        "postConsumerShare"
+      ]
+    },
+    "Circularity__RecycledContentList": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#RecycledContentList",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Circularity__RecycledContentEntity"
+      }
+    },
+    "Circularity__RecycledMaterial": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#RecycledMaterial",
+      "enum": [
+        "Cobalt",
+        "Nickel",
+        "Lithium",
+        "Lead",
+        "Cobalt",
+        "Nickel",
+        "Lithium",
+        "Lead"
+      ]
+    },
+    "Circularity__RenewableContent": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#RenewableContent"
+    },
+    "Circularity__ResourcePath": {
+      "type": "string",
+      "format": "uri",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#ResourcePath",
+      "description": "The path of a resource."
+    },
+    "Circularity__ResourcePath0": {
+      "type": "string",
+      "format": "uri",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#ResourcePath",
+      "description": "The path of a resource."
+    },
+    "Circularity__SafetyMeasures": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#SafetyMeasures",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Circularity__SafetyMeasuresEntity"
+        }
+      ]
+    },
+    "Circularity__SafetyMeasuresEntity": {
+      "description": "The safety measures should be provided via the instruction manual as URL linking to PDF.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#SafetyMeasuresEntity",
+      "type": "object",
+      "properties": {
+        "safetyInstructions": {
+          "description": "- Safety measures. - Necessary safety instructions to handle waste batteries, including in relation to the risks associated with, and the handling of, batteries containing lithium.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#safetyInstructions",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__ResourcePath0"
+            }
+          ]
+        },
+        "extinguishingAgents": {
+          "description": "Usable extinguishing agents refering to classes of extinguishers (A, B, C, D, K).EUBR: Annex XIII (1a) ? Annex VI Part A (9)",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#extinguishingAgents",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__ExtinguishingAgentsList"
+            }
+          ]
+        }
+      },
+      "required": [
+        "safetyInstructions",
+        "extinguishingAgents"
+      ]
+    },
+    "Circularity__SparePartSourcesList": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#SparePartSourcesList",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Circularity__SparePartSupplierEntity"
+      }
+    },
+    "Circularity__SparePartSupplierEntity": {
+      "description": "The part numbers for components should be provided together with the postal address, e-mail address and web address of the sources for spare parts.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#SparePartSupplierEntity",
+      "type": "object",
+      "properties": {
+        "nameOfSupplier": {
+          "description": "Name of Supplier",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#nameOfSupplier",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__Text"
+            }
+          ]
+        },
+        "addressOfSupplier": {
+          "description": "Postal address of supplier for spare parts.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#addressOfSupplier",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__AddressOfSupplier"
+            }
+          ]
+        },
+        "emailAddressOfSupplier": {
+          "description": "E-mail address of supplier for spare parts.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#emailAddressOfSupplier",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__EmailAddressOfSupplierTrait"
+            }
+          ]
+        },
+        "supplierWebAddress": {
+          "description": "Web address of supplier for spare parts.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#supplierWebAddress",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__ResourcePath"
+            }
+          ]
+        },
+        "components": {
+          "description": "Components available at supplier",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Circularity:1.2.0#components",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Circularity__ComponentList"
+            }
+          ]
+        }
+      },
+      "required": [
+        "nameOfSupplier",
+        "addressOfSupplier",
+        "emailAddressOfSupplier",
+        "supplierWebAddress",
+        "components"
+      ]
+    },
+    "Circularity__Text": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Text",
+      "description": "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
+    },
+    "GeneralProductInformation__BatteryCategoryEnum": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#BatteryCategoryEnum",
+      "enum": [
+        "lmt",
+        "ev",
+        "industrial",
+        "stationary"
+      ]
+    },
+    "GeneralProductInformation__BatteryMassMeasurable": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#BatteryMassMeasurable",
+      "description": "Weight of the battery\nEUBR: Annex XIII (1a) ? Annex VI Part A (5)"
+    },
+    "GeneralProductInformation__BatteryStatusEnumeration": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#BatteryStatusEnumeration",
+      "description": "Lifecycle status of the battery. Status defined from a list, with the options suggested as follows: 'original', 'repurposed', 'reused', 'remanufactured', 'waste'\n\nEUBR: Annex XIII (4c)",
+      "enum": [
+        "Original",
+        "Repurposed",
+        "Reused",
+        "Remanufactured",
+        "Waste"
+      ]
+    },
+    "GeneralProductInformation__ContactInformationEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#ContactInformationEntity",
+      "type": "object",
+      "properties": {
+        "contactName": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#contactName",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__Text"
+            }
+          ]
+        },
+        "postalAddress": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#postalAddress",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__PostalAddress"
+            }
+          ]
+        },
+        "identifier": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#identifier",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__Identifier"
+            }
+          ]
+        },
+        "emailAddress": {
+          "description": "email address",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#emailAddress",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__EmailAddressTrait"
+            }
+          ]
+        },
+        "webAddress": {
+          "description": "Web address.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#webAddress",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__ResourcePath"
+            }
+          ]
+        }
+      },
+      "required": [
+        "contactName",
+        "postalAddress",
+        "identifier"
+      ]
+    },
+    "GeneralProductInformation__EmailAddressTrait": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#EmailAddressTrait",
+      "description": "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc.",
+      "pattern": "^[w.-]+@[w.-]+.[A-Za-z]{2,}$"
+    },
+    "GeneralProductInformation__Identifier": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#Identifier",
+      "description": "Not demanded by the EU Battery Regulation"
+    },
+    "GeneralProductInformation__ManufacturerInformation": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#ManufacturerInformation",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/GeneralProductInformation__ContactInformationEntity"
+        }
+      ]
+    },
+    "GeneralProductInformation__ManufacturingDateTimeStamp": {
+      "type": "string",
+      "format": "date-time",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#ManufacturingDateTimeStamp",
+      "description": "Manufacturing date (month and year)\nRegulation Reference: Annex XIII (1a) ? Annex VI Part A (4); Annex VII Part B (1)"
+    },
+    "GeneralProductInformation__ManufacturingPlace": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#ManufacturingPlace",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/GeneralProductInformation__PostalAddressEntity"
+        }
+      ]
+    },
+    "GeneralProductInformation__OperatorInformation": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#OperatorInformation",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/GeneralProductInformation__ContactInformationEntity"
+        }
+      ]
+    },
+    "GeneralProductInformation__PostalAddress": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#PostalAddress",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/GeneralProductInformation__PostalAddressEntity"
+        }
+      ]
+    },
+    "GeneralProductInformation__PostalAddressEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#PostalAddressEntity",
+      "type": "object",
+      "properties": {
+        "addressCountry": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#addressCountry",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__Text"
+            }
+          ]
+        },
+        "postalCode": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#postalCode",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__Text"
+            }
+          ]
+        },
+        "streetAddress": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#streetAddress",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeneralProductInformation__Text"
+            }
+          ]
+        }
+      },
+      "required": [
+        "addressCountry",
+        "postalCode",
+        "streetAddress"
+      ]
+    },
+    "GeneralProductInformation__ProductIdentifierCode": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#ProductIdentifierCode",
+      "description": "A unique identifier is defined as \"a unique string of characters for the identification of batteries that also enables a web link to the battery passport\" (Art. 3(66)), to be attributed by the economic operator placing the battery on the market (Art. 77(3)). The unique identifier shall comply with the standard (?ISO/IEC?) 15459:2015 or equivalent (Art. 77(3)). A QR code shall provide access to the battery passport and be linked to the unique identifier (Art. 77(3)). Batteries shall ?bear a model identification and batch or serial number, or product number or another element allowing their identification? (Art. 38(6)). \n\nBattery Regulation Reference: Art. 77(3); Art. 3(66); Art. 38(6)"
+    },
+    "GeneralProductInformation__ProductPassportIdentifierTrait": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#ProductPassportIdentifierTrait",
+      "description": "Code constraint for URN",
+      "pattern": "^urn:[a-z0-9]+:[a-z0-9]+$"
+    },
+    "GeneralProductInformation__PuttingIntoServiceDateTime": {
+      "type": "string",
+      "pattern": "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#PuttingIntoServiceDateTime"
+    },
+    "GeneralProductInformation__ResourcePath": {
+      "type": "string",
+      "format": "uri",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#ResourcePath",
+      "description": "The path of a resource."
+    },
+    "GeneralProductInformation__Text": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Text",
+      "description": "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
+    },
+    "GeneralProductInformation__WarrentyPeriod": {
+      "type": "string",
+      "pattern": "--(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.GeneralProductInformation:1.2.0#WarrentyPeriod"
+    },
+    "Labels__LabelingEntity": {
+      "description": "Entity for the definition required battery labeling",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#LabelingEntity",
+      "type": "object",
+      "properties": {
+        "labelingSymbol": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#labelingSymbol",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Labels__ResourcePath"
+            }
+          ]
+        },
+        "labelingMeaning": {
+          "description": "Explanation of the meaning of all symbols and labels (including separate collection; cadmium and lead; and carbon footprint and carbon footprint performance class symbols; and symbols and labels printed on batteries or their accompanying documents but not accessible via the battery passport).",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#labelingMeaning",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Labels__MultiLanguageText"
+            }
+          ]
+        },
+        "labelingSubject": {
+          "description": "Short name of required labeling subjects",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#labelingSubject",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Labels__LabelingSubject"
+            }
+          ]
+        }
+      },
+      "required": [
+        "labelingSymbol",
+        "labelingMeaning",
+        "labelingSubject"
+      ]
+    },
+    "Labels__LabelingSubject": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#LabelingSubject",
+      "enum": [
+        "SeparateCollection",
+        "HazardousMaterial",
+        "CarbonFootPrint",
+        "ExtinguishingAgent"
+      ]
+    },
+    "Labels__Labels": {
+      "description": "List of labels",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Labels:1.2.0#Labels",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Labels__LabelingEntity"
+      }
+    },
+    "Labels__MultiLanguageText": {
+      "type": "object",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#MultiLanguageText",
+      "description": "Describes a Property which contains plain text in multiple languages. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
+    },
+    "Labels__ResourcePath": {
+      "type": "string",
+      "format": "uri",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#ResourcePath",
+      "description": "The path of a resource."
+    },
+    "MaterialComposition__BatteryChemistryEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#BatteryChemistryEntity",
+      "type": "object",
+      "properties": {
+        "shortName": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#shortName",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__Text"
+            }
+          ]
+        },
+        "clearName": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#clearName",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__Text"
+            }
+          ]
+        }
+      },
+      "required": [
+        "shortName",
+        "clearName"
+      ]
+    },
+    "MaterialComposition__BatteryChemistryEntityList": {
+      "description": "Detailed composition, including materials used in the cathode, anode, and electrolyte.\nAll common cells have two electrodes and an electrolyte. The specific combination of materials used to make these components is called \"chemistry.\" A cell's chemistry largely determines its properties, while most variations within it are caused by additives, purification, and design elements.\n\nEUBR: Annex XIII (1b) ? Annex VI Part A (7)",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#BatteryChemistryEntityList",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/MaterialComposition__BatteryChemistryEntity"
+        }
+      ]
+    },
+    "MaterialComposition__BatteryLocationEntity": {
+      "description": "Battery component that includes the material",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#BatteryLocationEntity",
+      "type": "object",
+      "properties": {
+        "componentName": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#componentName",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__Text"
+            }
+          ]
+        },
+        "componentId": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#componentId",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__Text"
+            }
+          ]
+        }
+      },
+      "required": [
+        "componentName"
+      ]
+    },
+    "MaterialComposition__BatteryMaterialEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#BatteryMaterialEntity",
+      "type": "object",
+      "properties": {
+        "batteryMaterialLocation": {
+          "description": "Battery component that relates to the material",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#batteryMaterialLocation",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__BatteryMaterialLocation"
+            }
+          ]
+        },
+        "batteryMaterialIdentifier": {
+          "description": "CAS Number ",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#batteryMaterialIdentifier",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__MaterialIdentifierTrait"
+            }
+          ]
+        },
+        "batteryMaterialName": {
+          "description": "Clear name of Material",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#batteryMaterialName",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__Text"
+            }
+          ]
+        },
+        "batteryMaterialMass": {
+          "description": "Weight of component material",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#batteryMaterialMass",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__Weight"
+            }
+          ]
+        },
+        "isCriticalRawMaterial": {
+          "description": "The battery passport must contain information on the critical raw materials present in the battery.\n\nThe information on the critical raw materials must also be provided on the battery label.\nPer Annex VI, Part A(10), critical raw materials must be reported if present in the battery in a concentration of more than 0,1 % weight by weight. ",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#isCriticalRawMaterial",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__Boolean"
+            }
+          ]
+        }
+      },
+      "required": [
+        "batteryMaterialLocation",
+        "batteryMaterialIdentifier",
+        "batteryMaterialName",
+        "batteryMaterialMass",
+        "isCriticalRawMaterial"
+      ]
+    },
+    "MaterialComposition__BatteryMaterialList": {
+      "description": "Detailed composition, including materials used in the cathode, anode, and electrolyte\n\nEUBR: Annex XIII (2a)",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#BatteryMaterialList",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MaterialComposition__BatteryMaterialEntity"
+      }
+    },
+    "MaterialComposition__BatteryMaterialLocation": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#BatteryMaterialLocation",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/MaterialComposition__BatteryLocationEntity"
+        }
+      ]
+    },
+    "MaterialComposition__Boolean": {
+      "type": "boolean",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Boolean",
+      "description": "Represents a boolean value (i.e. a \"flag\")."
+    },
+    "MaterialComposition__HazardousSubstanceClassChrateristicEnum": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#HazardousSubstanceClassChrateristicEnum",
+      "enum": [
+        "AcuteToxicity",
+        "SkinCorrosionOrIrritation",
+        "EyeDamageOrIrritation"
+      ]
+    },
+    "MaterialComposition__HazardousSubstanceConcentrationCharacteristic": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#HazardousSubstanceConcentrationCharacteristic"
+    },
+    "MaterialComposition__HazardousSubstanceEntity": {
+      "description": "Hazardous substances (No. 19-23): Name (agreed substance nomenclature, e.g. IUPAC or chemical name) all hazardous substance (as ?any substance that poses a threat to human health and the environment?). Suggested above 0.1 % weight by weight within each (sub-)component.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#HazardousSubstanceEntity",
+      "type": "object",
+      "properties": {
+        "hazardousSubstanceClass": {
+          "description": "Battery Regulation narrows reporting to substances falling under defined hazard classes and categories of the CLP regulation.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#hazardousSubstanceClass",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__HazardousSubstanceClassChrateristicEnum"
+            }
+          ]
+        },
+        "hazardousSubstanceName": {
+          "description": "Clear name of hazardous substance",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#hazardousSubstanceName",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__Text"
+            }
+          ]
+        },
+        "hazardousSubstanceConcentration": {
+          "description": "Concentration of hazardous substance",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#hazardousSubstanceConcentration",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__HazardousSubstanceConcentrationCharacteristic"
+            }
+          ]
+        },
+        "hazardousSubstanceImpact": {
+          "description": "Impact statements based on, e.g., REACH or GHS for all hazard classes applicable to substances in the battery.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#hazardousSubstanceImpact",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__ImpactList"
+            }
+          ]
+        },
+        "hazardousSubstanceLocation": {
+          "description": "Hazardous substances (No. 19-23): Location on a (sub-)component-level of all hazardous substances (as ?any substance that poses a threat to human health and the environment?). Suggested via a unique identifier or nomenclature.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#hazardousSubstanceLocation",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__HubstanceSubstanceLocationEntity"
+            }
+          ]
+        },
+        "hazardousSubstanceIdentifier": {
+          "description": "CAS identifier of hazardous substance",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#hazardousSubstanceIdentifier",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MaterialComposition__MaterialIdentifierTrait"
+            }
+          ]
+        }
+      },
+      "required": [
+        "hazardousSubstanceClass",
+        "hazardousSubstanceName",
+        "hazardousSubstanceConcentration",
+        "hazardousSubstanceImpact",
+        "hazardousSubstanceLocation",
+        "hazardousSubstanceIdentifier"
+      ]
+    },
+    "MaterialComposition__HazardousSubstancesList": {
+      "description": "Hazardous substances contained in the battery other than mercury, cadmium or lead. Substance as a chemical element and its compounds in the natural state or the result of a manufacturing process (ECHA). Battery Regulation narrows reporting to substances falling under defined hazard classes and categories of the CLP regulation.\n\nEUBR: Annex XIII (1b) ? Annex VI Part A (8)",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#HazardousSubstancesList",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MaterialComposition__HazardousSubstanceEntity"
+      }
+    },
+    "MaterialComposition__HubstanceSubstanceLocationEntity": {
+      "description": "\"The impact of substances, in particular, hazardous substances, contained in batteries on the environment and on human health or safety of persons, including impact due to inappropriate discarding of waste batteries such as littering or discarding as unsorted municipal waste?.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#HubstanceSubstanceLocationEntity",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/MaterialComposition__BatteryLocationEntity"
+        }
+      ]
+    },
+    "MaterialComposition__ImpactList": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#ImpactList",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Text",
+        "description": "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
+      }
+    },
+    "MaterialComposition__MaterialIdentifierTrait": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#MaterialIdentifierTrait",
+      "description": "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc.",
+      "pattern": "^\\d{2,7}-\\d{2}-\\d{1}$"
+    },
+    "MaterialComposition__Text": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Text",
+      "description": "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
+    },
+    "MaterialComposition__Weight": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.MaterialComposition:1.2.0#Weight"
+    },
+    "Performance__AtSoC": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#AtSoC"
+    },
+    "Performance__BatteryComponent": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#BatteryComponent",
+      "enum": [
+        "pack",
+        "module",
+        "cell"
+      ]
+    },
+    "Performance__BatteryCondition": {
+      "description": "'- Expected battery lifetime expressed in cycles, and reference test used.\n- Their expected life-time under the reference conditions for which they have been designed in terms of cycles, except for non-cycle applications, and calendar years.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#BatteryCondition",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__BatteryConditionEntity"
+        }
+      ]
+    },
+    "Performance__BatteryConditionEntity": {
+      "description": "Covers all battery lifetime relevant properties",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#BatteryConditionEntity",
+      "type": "object",
+      "properties": {
+        "energyThroughput": {
+          "description": "The data attribute should be reported as measured for further potential processing. In addition, the normalisation by capacity may add a further useful value that ensures comparability among battery sizes.\n\nDIN DKE Spec 99100 chapter reference: 6.7.6.7",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#energyThroughput",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__EnergyThroughput"
+            }
+          ]
+        },
+        "capacityThroughput": {
+          "description": "The data attribute should be reported as measured for further potential processing. In addition, the normalisation by capacity may add a further useful value that ensures comparability among battery sizes.\n\nDIN DKE Spec 99100 chapter reference: 6.7.6.8",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#capacityThroughput",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CapacityThroughput"
+            }
+          ]
+        },
+        "numberOfFullCycles": {
+          "description": "Number of (full) charging and discharging cycles.\n\nDIN DKE Spec 99100 chapter reference: 6.7.6.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#numberOfFullCycles",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__NumberOfFullCycles"
+            }
+          ]
+        },
+        "stateOfCertifiedEnergy": {
+          "description": "Definition based on UNECE GTR 22: The measured or on-board UBE performance at a specific point in its lifetime, expressed as a percentage of the certified usable battery energy.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.7",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#stateOfCertifiedEnergy",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__StateOfCertifiedEnergy"
+            }
+          ]
+        },
+        "capacityFade": {
+          "description": "The capacity fade is the Decrease over time and upon usage in the amount of charge that a battery can deliver at the rated voltage, with respect to the original rated capacity (see BattReg Annex IV (2)) as declared by the manufacturer.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#capacityFade",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CapacityFade"
+            }
+          ]
+        },
+        "remainingEnergy": {
+          "description": "Definition from UNECE GTR 22, applicable only to EVs.\nThe energy supplied by the battery from the beginning of the test procedure used for certification until the applicable break-off criterion of the test procedure used for certification is reached.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.6",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#remainingEnergy",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RemainingEnergy"
+            }
+          ]
+        },
+        "remainingCapacity": {
+          "description": "The in-use data attribute on capacity, corresponding with the definition of rated capacity.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.3",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#remainingCapacity",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RemainingCapacity"
+            }
+          ]
+        },
+        "negativeEvents": {
+          "description": "The battery passport must contain information and data resulting from its use such as accidents. \n\nDIN DKE Spec 99100 chapter reference: 6.7.8.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#negativeEvents",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__NegativeEvents"
+            }
+          ]
+        },
+        "temperatureInformation": {
+          "description": "The battery passport must include periodically recorded information on the operating environmental conditions, including temperature.\n\nDIN DKE Spec 99100 chapter reference: 6.7.7.5 - 8",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#temperatureInformation",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__TemperatureInformation"
+            }
+          ]
+        },
+        "remainingPowerCapability": {
+          "description": "'- Original power capability (in Watts) and limits, with temperature range when relevant.\n- The amount of energy that a battery is capable to provide over a given period of time under reference conditions.\n- Power capability at 80% and 20% state of charge.\n\nDIN DKE Spec 99100 chapter reference: 6.7.3.3",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#remainingPowerCapability",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RemainingPowerCapability"
+            }
+          ]
+        },
+        "evolutionOfSelfDischarge": {
+          "description": "Evolution of self-discharge rates is the change of self-discharge over time and usage, as percentage calculated from the initial and current self-discharge rate.\n\nDIN DKE Spec 99100 chapter reference: 6.7.4.8",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#evolutionOfSelfDischarge",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__EvolutionOfSelfDischarge"
+            }
+          ]
+        },
+        "currentSelfDischargingRate": {
+          "description": "The current self-discharge rate is the change of the self-discharge rate in an idle state of the battery in reference conditions (temperature etc.) at aging parameter x, e.g. after a certain amount of storage time or, number of cycles.\n\nDIN DKE Spec 99100 chapter reference: 6.7.4.7",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#currentSelfDischargingRate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CurrentSelfDischargingRate"
+            }
+          ]
+        },
+        "internalResistanceIncrease": {
+          "description": "The internal resistance increase over time and upon usage should be defined based on the ratio of current and initial values as follows:\nRincrease(x) = (R(x)  - RBOL) / RBOL  100 %\nwhere\nx \tis the aging parameter (e.g. storage time, number of cycles, etc.;);\nR(x)\tis the internal resistance at the aging parameter x; and\nRBOL\tis the internal resistance at begin of life.\n\nThe battery passport can include additional information about the internal resistance increase on battery cell and battery module level, if available. It should be defined and calculated analogously to the requirements on battery pack level above.\n\nDIN DKE Spec 99100 chapter reference: 6.7.5.3",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#internalResistanceIncrease",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CurrentInternalResistanceValue"
+            }
+          ]
+        },
+        "remainingRoundTripEnergyEfficiency": {
+          "description": "The battery passport shall include information, where possible, about the remaining round trip energy efficiency as information on the state of health of the battery \n\nThe update frequency of remaining round trip energy efficiency should be aligned with the update frequency of round trip energy efficiency fade and should be provided upon change of the battery status.\n\nDIN DKE Spec 99100 chapter reference: 6.7.4.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#remainingRoundTripEnergyEfficiency",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RemainingRoundTripEnergyEfficiency"
+            }
+          ]
+        },
+        "stateOfCharge": {
+          "description": "The Battery Pass consortium proposes to change the definition to: \"available capacity in a battery expressed as a percentage of remaining capacity\" to reflect use of SoC in practice.  \n\nDIN DKE Spec 99100 chapter reference: 6.7.2.8",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#stateOfCharge",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__StateOfCharge"
+            }
+          ]
+        }
+      },
+      "required": [
+        "energyThroughput",
+        "capacityThroughput",
+        "numberOfFullCycles",
+        "stateOfCertifiedEnergy",
+        "capacityFade",
+        "remainingEnergy",
+        "remainingCapacity",
+        "negativeEvents",
+        "temperatureInformation",
+        "remainingPowerCapability",
+        "evolutionOfSelfDischarge",
+        "currentSelfDischargingRate",
+        "internalResistanceIncrease",
+        "remainingRoundTripEnergyEfficiency",
+        "stateOfCharge"
+      ]
+    },
+    "Performance__BatteryTechnicalProperties": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#BatteryTechnicalProperties",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__BatteryTechnicalPropertiesEntity"
+        }
+      ]
+    },
+    "Performance__BatteryTechnicalPropertiesEntity": {
+      "description": "Covers all Capability related data attributes",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#BatteryTechnicalPropertiesEntity",
+      "type": "object",
+      "properties": {
+        "originalPowerCapability": {
+          "description": "Pre-use power capability: Definition of power capability as given in Battery Regulation. \nAnnex IV Part B, point 4 --> measurement at 80 % and 20 % SoC required. This requirement may not be implementable for remaining power capability and power fade(see below). It, thus, should be reviewed together with SoC definition.\n\nDIN DKE Spec 99100 chapter reference: 6.7.3.2\n\n",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#originalPowerCapability",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__OriginalPowerCapabilityAtSoC"
+            }
+          ]
+        },
+        "ratedMaximumPower": {
+          "description": "This data point describes the value of maximum permitted power the battery is rated for and reflects the data relevant for power limits.\n\nDIN DKE Spec 99100 chapter reference: 6.7.3.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#ratedMaximumPower",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RatedMaximumPower"
+            }
+          ]
+        },
+        "powerCapabilityRatio": {
+          "description": "Provides information on nominal/recommended charge rate (C-rate); equal to regulation definition.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#powerCapabilityRatio",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__PowerCapabilityRatio"
+            }
+          ]
+        },
+        "ratedEnergy": {
+          "description": "The certified usable battery energy is the usable battery energy according to the procedure in the UN GTR No 22 as determined during the certification of the vehicle.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.5",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#ratedEnergy",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RatedEnergy"
+            }
+          ]
+        },
+        "expectedNumberOfCycles": {
+          "description": "Expected battery lifetime expressed in cycles.\nThe exception for non-cycle applications in Article 10 appears sensible, but is not included in the Annex XIII provision.\nThe data attribute is defined by measurement conditions of the cycle-life test such as the C-Rate (see below) and the depth of discharge in the cycle-life test\n\nDIN DKE Spec 99100 chapter reference: 6.7.6.3",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#expectedNumberOfCycles",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__ExpectedNumberOfCycles"
+            }
+          ]
+        },
+        "initialSelfDischarge": {
+          "description": "Initial self-discharge in % of capacity per unit of time in defined conditions (temperature range etc) as pre-use metric. \n\nDIN DKE Spec 99100 chapter reference: 6.7.4.6",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#initialSelfDischarge",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__InitialSelfDischarge"
+            }
+          ]
+        },
+        "roundtripEfficiency": {
+          "description": "Energy round trip efficiency is the ratio of the net energy delivered by a battery during a discharge test to the total energy required to restore the initial state of charge by a standard charge (see BattReg Annex IV (6)).\n\nDIN DKE Spec 99100 chapter reference: 6.7.4.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#roundtripEfficiency",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RoundtripEfficiency"
+            }
+          ]
+        },
+        "ratedCapacity": {
+          "description": "Rated capacity is the total number of ampere-hours (Ah) that can be withdrawn from a fully charged battery under reference conditions (see BattReg Annex IV (1)).\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#ratedCapacity",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RatedCapacity"
+            }
+          ]
+        },
+        "initialInternalResistance": {
+          "description": "The battery passport can include additional information about the initial internal resistance on battery module level, if available. It should be defined and calculated analogously as the requirements on battery pack level above.\n\nDIN DKE Spec 99100 chapter reference: 6.7.5.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#initialInternalResistance",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__InitialInternalResistance"
+            }
+          ]
+        },
+        "expectedLifetime": {
+          "description": "The battery passport must include information about the expected battery lifetime in calendar years.\n\nThe update interval must be upon placement on the market and upon change of the battery status.\n\nDIN DKE Spec 99100 chapter reference: 6.7.6.2",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#expectedLifetime",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__ExpectedLifeTime"
+            }
+          ]
+        },
+        "cRate": {
+          "description": "As a non-mandatory data point the battery passport should include the ratio between nominal battery power in W and battery energy in Wh. It aims to provide an indication of the applicable discharge and charge rate in terms of rated capacity (C-rate) (see BattReg Annex IV Part B(2)).\n\nThe update interval should be upon placement on the market and upon change of the battery status.\n\nDIN DKE Spec 99100 chapter reference: 6.7.3.6",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#cRate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CRate"
+            }
+          ]
+        },
+        "nominalVoltage": {
+          "description": "Nominal voltage the battery is rated for.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.11",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#nominalVoltage",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__NominalVoltage"
+            }
+          ]
+        },
+        "minimumVoltage": {
+          "description": "Minimum voltage the battery is rated for.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.9",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#minimumVoltage",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__MinimumVoltage"
+            }
+          ]
+        },
+        "maximumVoltage": {
+          "description": "Maximum voltage the battery is rated for.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.10",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#maximumVoltage",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__MaximumVoltage"
+            }
+          ]
+        },
+        "capacityThresholdForExhaustion": {
+          "description": "The percentage of SOCE, above which the battery is still considered operational as EV battery in its current life, as provided by the economic operator.\n\nDIN DKE Spec 99100 chapter reference: 6.7.6.9",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#capacityThresholdForExhaustion",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CapacityThresholdForExhaustion"
+            }
+          ]
+        },
+        "lifetimeReferenceTest": {
+          "description": "The exception for non-cycle applications as mentioned in \"Expected lifetime: Number of charge-discharge cycles\" should apply to this data attribute as well.\n\nDIN DKE Spec 99100 chapter reference: 6.7.6.5",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lifetimeReferenceTest",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__ResourcePath"
+            }
+          ]
+        },
+        "cRateLifeCycleTest": {
+          "description": "The C-rate should be provided separately for both the charge and discharge of the battery, if applicable.\n\nThe exception for non-cycle applications as mentioned in \"Expected lifetime: Number of charge-discharge cycles\" should apply to this data attribute as well.\n\nDIN DKE Spec 99100 chapter reference: 6.7.6.6",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#cRateLifeCycleTest",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CRateLifeCycleTest"
+            }
+          ]
+        },
+        "temperatureRangeIdleState": {
+          "description": "Upper an lower boundary of the surrounding temperature range, which the battery can safely withstand. \n\nDIN DKE Spec 99100 chapter reference: 6.7.6.3-4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#temperatureRangeIdleState",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__TemperatureRangeIdleState"
+            }
+          ]
+        },
+        "roundTripEfficiencyAt50PercentCycleLife": {
+          "description": "Initial round trip energy efficiency shall be measured at reference conditions that include the specification of 50 % of cycle-life.\n\nTest methods and reference conditions should separately consider non-cycle applications and batteries with very long cycle-life.\n\nDIN DKE Spec 99100 chapter reference: 6.7.4.3\n",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#roundTripEfficiencyAt50PercentCycleLife",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RoundTripEfficiencyAt50PercentCycleLife"
+            }
+          ]
+        },
+        "roundTripEfficiencyFade": {
+          "description": "Energy round trip efficiency fade should be calculated using the initial round trip energy efficiency and remaining round trip energy efficiency following the formula below:\n\nRTEfade (x) = (1-RTE(x)) / RTEBOL  100\" %\" \nwhere\nx \tis the aging parameter (e.g. storage time, number of cycles, etc.);\nRTE(x) \tis the round trip energy efficiency at aging parameter x;\nRTEBOL \tis the round trip energy efficiency at begin of life.\n\nDIN DKE Spec 99100 chapter reference: 6.7.4.5",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#roundTripEfficiencyFade",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RoundTripEfficienyFade"
+            }
+          ]
+        },
+        "powerFade": {
+          "description": "Power fade (in %) means the decrease over time and upon usage in the amount of power that a battery can deliver at the rated voltage. (see BattReg Annex IV (4)).\n\nPower fade should be calculated using original and remaining power capability following the formula below:\nPfade(x) = (1-P(x)) / PBOL\" 100\" %\" \nwhere\nx \tis the aging parameter (e.g. storage time, number of cycles, etc.);\nP(x) \tis the power capability at aging parameter x;\nPBOL \tis the power capability at begin of life.\n\nDIN DKE Spec 99100 chapter reference: 6.7.3.4",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#powerFade",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__PowerFade"
+            }
+          ]
+        }
+      },
+      "required": [
+        "originalPowerCapability",
+        "ratedMaximumPower",
+        "powerCapabilityRatio",
+        "ratedEnergy",
+        "expectedNumberOfCycles",
+        "initialSelfDischarge",
+        "roundtripEfficiency",
+        "ratedCapacity",
+        "initialInternalResistance",
+        "expectedLifetime",
+        "nominalVoltage",
+        "minimumVoltage",
+        "maximumVoltage",
+        "capacityThresholdForExhaustion",
+        "lifetimeReferenceTest",
+        "cRateLifeCycleTest",
+        "temperatureRangeIdleState",
+        "roundTripEfficiencyAt50PercentCycleLife",
+        "roundTripEfficiencyFade",
+        "powerFade"
+      ]
+    },
+    "Performance__CRate": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CRate"
+    },
+    "Performance__CRateLifeCycleTest": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CRateLifeCycleTest"
+    },
+    "Performance__CapacityFade": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CapacityFade",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__CapacityFadeEntity"
+        }
+      ]
+    },
+    "Performance__CapacityFadeEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CapacityFadeEntity",
+      "type": "object",
+      "properties": {
+        "capacityFadeValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#capacityFadeValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CapacityFadeValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "capacityFadeValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__CapacityFadeValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CapacityFadeValue"
+    },
+    "Performance__CapacityThresholdForExhaustion": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CapacityThresholdForExhaustion"
+    },
+    "Performance__CapacityThroughput": {
+      "description": "Capacity throughput.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CapacityThroughput",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__CapacityThroughputEntity"
+        }
+      ]
+    },
+    "Performance__CapacityThroughputEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CapacityThroughputEntity",
+      "type": "object",
+      "properties": {
+        "capacityThroughputValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#capacityThroughputValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CapacityThroughputValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "capacityThroughputValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__CapacityThroughputValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CapacityThroughputValue"
+    },
+    "Performance__CurrentInternalResistanceValue": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CurrentInternalResistanceValue",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Performance__InternalResistanceIncreaseEntity"
+      }
+    },
+    "Performance__CurrentSelfDischargingRate": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CurrentSelfDischargingRate",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__CurrentSelfDischargingRateEntity"
+        }
+      ]
+    },
+    "Performance__CurrentSelfDischargingRateEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CurrentSelfDischargingRateEntity",
+      "type": "object",
+      "properties": {
+        "currentSelfDischargingRateValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#currentSelfDischargingRateValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__CurrentSelfDischargingRateValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "currentSelfDischargingRateValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__CurrentSelfDischargingRateValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#CurrentSelfDischargingRateValue"
+    },
+    "Performance__EnergyThroughput": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#EnergyThroughput",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__EnergyThroughputEntity"
+        }
+      ]
+    },
+    "Performance__EnergyThroughputEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#EnergyThroughputEntity",
+      "type": "object",
+      "properties": {
+        "energyThroughputValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#energyThroughputValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__EnergyThroughputValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "energyThroughputValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__EnergyThroughputValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#EnergyThroughputValue"
+    },
+    "Performance__EvolutionOfSelfDischarge": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#EvolutionOfSelfDischarge",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__EvolutionOfSelfDischargeEntity"
+        }
+      ]
+    },
+    "Performance__EvolutionOfSelfDischargeEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#EvolutionOfSelfDischargeEntity",
+      "type": "object",
+      "properties": {
+        "evolutionOfSelfDischargeValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#evolutionOfSelfDischargeValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__EvolutionOfSelfDischargeEntityValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "evolutionOfSelfDischargeValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__EvolutionOfSelfDischargeEntityValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#EvolutionOfSelfDischargeEntityValue"
+    },
+    "Performance__ExpectedLifeTime": {
+      "type": "number",
+      "minimum": -32768,
+      "maximum": 32767,
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#ExpectedLifeTime"
+    },
+    "Performance__ExpectedNumberOfCycles": {
+      "type": "number",
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807,
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#ExpectedNumberOfCycles"
+    },
+    "Performance__InitialInternalResistance": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#InitialInternalResistance",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Performance__InternalResistanceEntity"
+      }
+    },
+    "Performance__InitialSelfDischarge": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#InitialSelfDischarge"
+    },
+    "Performance__InternalResistanceEntity": {
+      "description": "The internal resistance is a quotient of change of voltage of a battery by the corresponding change in discharge current under specified conditions (IEV 482 03 36).",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#InternalResistanceEntity",
+      "type": "object",
+      "properties": {
+        "ohmicResistance": {
+          "description": "Initial (Pre-Use) internal resistance on battery pack level. \n\nDefinition of internal resistance should differ from regulation definition, as \"opposition\" is not an electrotechnical term and may be based on IEV 131-12-04: \"internal resistance means the absolute value of the quotient of the voltage drop between the terminals by the electric current increase in the battery circuit during a current pulse\"",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#ohmicResistance",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__OhimcResistance"
+            }
+          ]
+        },
+        "batteryComponent": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#batteryComponent",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__BatteryComponent"
+            }
+          ]
+        }
+      },
+      "required": [
+        "ohmicResistance",
+        "batteryComponent"
+      ]
+    },
+    "Performance__InternalResistanceIncreaseEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#InternalResistanceIncreaseEntity",
+      "type": "object",
+      "properties": {
+        "internalResistanceIncreaseValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#internalResistanceIncreaseValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__InternalResistanceIncreaseValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        },
+        "batteryComponent": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#batteryComponent",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__BatteryComponent"
+            }
+          ]
+        }
+      },
+      "required": [
+        "internalResistanceIncreaseValue",
+        "lastUpdate",
+        "batteryComponent"
+      ]
+    },
+    "Performance__InternalResistanceIncreaseValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#InternalResistanceIncreaseValue"
+    },
+    "Performance__MaximumTrait": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#MaximumTrait",
+      "maximum": 200.0,
+      "minimum": -100.0
+    },
+    "Performance__MaximumVoltage": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#MaximumVoltage"
+    },
+    "Performance__MinimumTrait": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#MinimumTrait",
+      "maximum": 200.0,
+      "minimum": -100.0
+    },
+    "Performance__MinimumVoltage": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#MinimumVoltage"
+    },
+    "Performance__NegativeEventEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#NegativeEventEntity",
+      "type": "object",
+      "properties": {
+        "negativeEvent": {
+          "description": "Negative event, such as an accident. No further definition provided by regulation.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#negativeEvent",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Text"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "negativeEvent",
+        "lastUpdate"
+      ]
+    },
+    "Performance__NegativeEvents": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#NegativeEvents",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Performance__NegativeEventEntity"
+      }
+    },
+    "Performance__NominalVoltage": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#NominalVoltage",
+      "description": "s"
+    },
+    "Performance__NumberOfFullCycles": {
+      "description": "- Information and data as a result of its use, including the number of charging and discharging cycles.",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#NumberOfFullCycles",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__NumberOfFullCyclesEntity"
+        }
+      ]
+    },
+    "Performance__NumberOfFullCyclesEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#NumberOfFullCyclesEntity",
+      "type": "object",
+      "properties": {
+        "numberOfFullCyclesValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#numberOfFullCyclesValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__NumberOfFullCyclesValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "numberOfFullCyclesValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__NumberOfFullCyclesValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#NumberOfFullCyclesValue"
+    },
+    "Performance__OhimcResistance": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#OhimcResistance"
+    },
+    "Performance__OriginalPowerCapabilityAtSoC": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#OriginalPowerCapabilityAtSoC",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Performance__PowerCapabilityAtEntity"
+      }
+    },
+    "Performance__PowerCapabilityAtEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#PowerCapabilityAtEntity",
+      "type": "object",
+      "properties": {
+        "atSoC": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#atSoC",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__AtSoC"
+            }
+          ]
+        },
+        "powerCapabilityAt": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#powerCapabilityAt",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__PowerCapabilityAtSoc"
+            }
+          ]
+        }
+      },
+      "required": [
+        "atSoC",
+        "powerCapabilityAt"
+      ]
+    },
+    "Performance__PowerCapabilityAtSoc": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#PowerCapabilityAtSoc"
+    },
+    "Performance__PowerCapabilityRatio": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#PowerCapabilityRatio",
+      "description": "Ratio between nominal allowed battery power (W) and battery energy (Wh)."
+    },
+    "Performance__PowerFade": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#PowerFade"
+    },
+    "Performance__RatedCapacity": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RatedCapacity"
+    },
+    "Performance__RatedEnergy": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RatedEnergy"
+    },
+    "Performance__RatedMaximumPower": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RatedMaximumPower"
+    },
+    "Performance__RemainingCapacity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingCapacity",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__RemainingCapacityEntity"
+        }
+      ]
+    },
+    "Performance__RemainingCapacityEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingCapacityEntity",
+      "type": "object",
+      "properties": {
+        "remainingCapacityValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#remainingCapacityValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RemainingCapacityValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "remainingCapacityValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__RemainingCapacityValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingCapacityValue"
+    },
+    "Performance__RemainingEnergy": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingEnergy",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__RemainingEnergyEntity"
+        }
+      ]
+    },
+    "Performance__RemainingEnergyEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingEnergyEntity",
+      "type": "object",
+      "properties": {
+        "remainingEnergyValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#remainingEnergyValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__UBERemainingValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "remainingEnergyValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__RemainingPowerCapability": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingPowerCapability",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__RemainingPowerCapabilityEntity"
+        }
+      ]
+    },
+    "Performance__RemainingPowerCapabilityDynamicAt": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingPowerCapabilityDynamicAt",
+      "type": "object",
+      "properties": {
+        "rPCLastUpdated": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#rPCLastUpdated",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "rPCLastUpdated"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__PowerCapabilityAtEntity"
+        }
+      ]
+    },
+    "Performance__RemainingPowerCapabilityEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingPowerCapabilityEntity",
+      "type": "object",
+      "properties": {
+        "remainingPowerCapabilityValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#remainingPowerCapabilityValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RemainingPowerCapabilityValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "remainingPowerCapabilityValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__RemainingPowerCapabilityValue": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingPowerCapabilityValue",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__RemainingPowerCapabilityDynamicAt"
+        }
+      ]
+    },
+    "Performance__RemainingRoundTripEnergyEfficiency": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingRoundTripEnergyEfficiency",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__RemainingRoundTripEnergyEfficiencyEntity"
+        }
+      ]
+    },
+    "Performance__RemainingRoundTripEnergyEfficiencyEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingRoundTripEnergyEfficiencyEntity",
+      "type": "object",
+      "properties": {
+        "remainingRoundTripEnergyEfficiencyValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#remainingRoundTripEnergyEfficiencyValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__RemainingRoundTripEnergyEfficiencyValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "remainingRoundTripEnergyEfficiencyValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__RemainingRoundTripEnergyEfficiencyValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RemainingRoundTripEnergyEfficiencyValue"
+    },
+    "Performance__ResourcePath": {
+      "type": "string",
+      "format": "uri",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#ResourcePath",
+      "description": "The path of a resource."
+    },
+    "Performance__RoundTripEfficiencyAt50PercentCycleLife": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RoundTripEfficiencyAt50PercentCycleLife"
+    },
+    "Performance__RoundTripEfficienyFade": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RoundTripEfficienyFade",
+      "description": "Art. 10: Annex IV Part A (4) (only definition); Article 14: Annex VII Part A (3)"
+    },
+    "Performance__RoundtripEfficiency": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#RoundtripEfficiency"
+    },
+    "Performance__StateOfCertifiedEnergy": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#StateOfCertifiedEnergy",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__StateOfCertifiedEnergyEntity"
+        }
+      ]
+    },
+    "Performance__StateOfCertifiedEnergyEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#StateOfCertifiedEnergyEntity",
+      "type": "object",
+      "properties": {
+        "stateOfCertifiedEnergyValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#stateOfCertifiedEnergyValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__StateOfCertifiedEnergyValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "stateOfCertifiedEnergyValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__StateOfCertifiedEnergyValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#StateOfCertifiedEnergyValue"
+    },
+    "Performance__StateOfCharge": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#StateOfCharge",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__StateOfChargeEntity"
+        }
+      ]
+    },
+    "Performance__StateOfChargeEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#StateOfChargeEntity",
+      "type": "object",
+      "properties": {
+        "stateOfChargeValue": {
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#stateOfChargeValue",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__StateOfChargeValue"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "stateOfChargeValue",
+        "lastUpdate"
+      ]
+    },
+    "Performance__StateOfChargeValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#StateOfChargeValue"
+    },
+    "Performance__TemperatureConditionsEntity": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#TemperatureConditionsEntity",
+      "type": "object",
+      "properties": {
+        "timeExtremeHighTemp": {
+          "description": "Cumulated time spent above the given upper boundary of temperature.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#timeExtremeHighTemp",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__TimeExtremeHighTemp"
+            }
+          ]
+        },
+        "timeExtremeLowTemp": {
+          "description": "Cumulated time spent below the given lower boundary of temperature.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#timeExtremeLowTemp",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__TimeExtremeLowTemp"
+            }
+          ]
+        },
+        "timeExtremeHighTempCharging": {
+          "description": "Cumulated time spent above the given upper boundary of temperature during Charging.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#timeExtremeHighTempCharging",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__TimeExtremeHighTempCharging"
+            }
+          ]
+        },
+        "timeExtremeLowTempCharging": {
+          "description": "Cumulated time spent below the given lower boundary of temperature during charging.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#timeExtremeLowTempCharging",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__TimeExtremeLowTempCharging"
+            }
+          ]
+        },
+        "lastUpdate": {
+          "description": "Timestamp for dynamic data attributes show the last update time.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#lastUpdate",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__Timestamp"
+            }
+          ]
+        }
+      },
+      "required": [
+        "timeExtremeHighTemp",
+        "timeExtremeLowTemp",
+        "timeExtremeHighTempCharging",
+        "timeExtremeLowTempCharging",
+        "lastUpdate"
+      ]
+    },
+    "Performance__TemperatureInformation": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#TemperatureInformation",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Performance__TemperatureConditionsEntity"
+        }
+      ]
+    },
+    "Performance__TemperatureRangeIdleState": {
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#TemperatureRangeIdleState",
+      "type": "object",
+      "properties": {
+        "minimum": {
+          "description": "lower temperature range.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#minimum",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__MinimumTrait"
+            }
+          ]
+        },
+        "maximum": {
+          "description": "upper temperature range.",
+          "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#maximum",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Performance__MaximumTrait"
+            }
+          ]
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ]
+    },
+    "Performance__Text": {
+      "type": "string",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Text",
+      "description": "Describes a Property which contains plain text. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc."
+    },
+    "Performance__TimeExtremeHighTemp": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#TimeExtremeHighTemp"
+    },
+    "Performance__TimeExtremeHighTempCharging": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#TimeExtremeHighTempCharging"
+    },
+    "Performance__TimeExtremeLowTemp": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#TimeExtremeLowTemp"
+    },
+    "Performance__TimeExtremeLowTempCharging": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#TimeExtremeLowTempCharging"
+    },
+    "Performance__Timestamp": {
+      "type": "string",
+      "pattern": "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#Timestamp",
+      "description": "Describes a Property which contains the date and time with an optional timezone."
+    },
+    "Performance__UBERemainingValue": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.Performance:1.2.1#UBERemainingValue"
+    },
+    "SupplyChainDueDiligence__ResourcePath": {
+      "type": "string",
+      "format": "uri",
+      "x-samm-aspect-model-urn": "urn:samm:org.eclipse.esmf.samm:characteristic:2.2.0#ResourcePath",
+      "description": "The path of a resource."
+    },
+    "SupplyChainDueDiligence__SupplyChainIndicies": {
+      "type": "number",
+      "x-samm-aspect-model-urn": "urn:samm:io.BatteryPass.SupplyChainDueDiligence:1.2.0#SupplyChainIndicies",
+      "description": "Value that defines supply chain due dilligence performance"
+    }
+  },
+  "additionalProperties": false
+}

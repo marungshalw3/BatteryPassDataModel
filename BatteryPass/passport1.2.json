@@ -1,0 +1,260 @@
+{
+  "CarbonFootprint": {
+    "absoluteCarbonFootprint": -1.7976931348623157e+308,
+    "batteryCarbonFootprint": -1.7976931348623157e+308,
+    "carbonFootprintPerLifecycleStage": [
+      {
+        "carbonFootprint": -1.7976931348623157e+308,
+        "lifecycleStage": "RawMaterialExtraction"
+      }
+    ],
+    "carbonFootprintPerformanceClass": "eOMtThyhVNLWUZNRcBaQKxI",
+    "carbonFootprintStudy": "telnet://192.0.2.16:80/"
+  },
+  "Circularity": {
+    "dismantlingAndRemovalInformation": [
+      {
+        "documentType": "BillOfMaterial",
+        "documentURL": "telnet://192.0.2.16:80/",
+        "mimeType": "eOMtThyhVNLWUZNRcBaQKxI"
+      }
+    ],
+    "endOfLifeInformation": {
+      "informationOnCollection": "telnet://192.0.2.16:80/",
+      "separateCollection": "ftp://ftp.is.co.za/rfc/rfc1808.txt",
+      "wastePrevention": "http://www.wikipedia.org"
+    },
+    "recycledContent": [
+      {
+        "postConsumerShare": 56.890068,
+        "preConsumerShare": 54.426945,
+        "recycledMaterial": "Cobalt"
+      }
+    ],
+    "renewableContent": 2.490925e+38,
+    "safetyMeasures": {
+      "extinguishingAgent": [
+        "RYtGKbgicZaHCBRQDSx"
+      ],
+      "safetyInstructions": "http://www.ietf.org/rfc/rfc2396.txt"
+    },
+    "sparePartSources": [
+      {
+        "addressOfSupplier": {
+          "addressCountry": "Germany",
+          "postalCode": "DE-10719",
+          "streetAddress": "Street 1"
+        },
+        "components": [
+          {
+            "partName": "Cell",
+            "partNumber": "JxkyvRnL"
+          }
+        ],
+        "emailAddressOfSupplier": "RNREgH9qIfCWOUvZBJnN3rOOhOkvyTMlR7rPfawbyX9Z_cGIHmBfvU_mYoZlXZ4nsLjh2v5@Kv-BqH-whrmiVB13HafewtCFY-wMLW5l9S7qLQOEWN7NG.sksFuibBWpuZ",
+        "nameOfSupplier": "yedUsFwdkelQbxeTeQOvaScfqIOOmaa",
+        "supplierWebAddress": "ftp://ftp.is.co.za/rfc/rfc1808.txt"
+      }
+    ]
+  },
+  "GeneralProductInformation": {
+    "batteryCategory": "lmt",
+    "batteryMass": 699,
+    "batteryPassportIdentifier": "urn:bmwk:123456687678",
+    "batteryStatus": "Original",
+    "manufacturerInformation": {
+      "contactName": "yedUsFwdkelQbxeTeQOvaScfqIOOmaa",
+      "emailAddress": ".ww-...-ww...@ww.-..w.-www-.-.-w--w.ww--..-.w.ww.-...w.-.w.jGphZZQBHAFyIqSqHUNGwnomwanuIDiDpbLftOdDNZMwzMeqjAQpLVSSkKExPOypZXmRDeCGjVwKMtHHEhhmd",
+      "identifier": "JxkyvRnL",
+      "postalAddress": {
+        "addressCountry": "Germany",
+        "postalCode": "10719",
+        "streetAddress": "Hindenburgstr. 10"
+      },
+      "webAddress": "telnet://192.0.2.16:80/"
+    },
+    "manufacturingDate": "2025-06-17T11:14:27.698+02:00",
+    "manufacturingPlace": {
+      "addressCountry": "Germany",
+      "postalCode": "10719",
+      "streetAddress": "Hindenburgstr. 10"
+    },
+    "operatorInformation": {
+      "contactName": "RYtGKbgicZaHCBRQDSx",
+      "emailAddress": "-w-......www-www-w-...--w--w.-w-www--.w...-w.www.w..-w..--.ww@.ww..-www-ww--ww.ww---w.w-w.w.ww...-w%mKozizkOjnxNSVyMliITPITDtxTLqUoUkEZlpZTvFMYBIjfUgqHyJIztdiBfETLcpZPXYcTSCSpSTTFAfi",
+      "identifier": "VLhpfQGTMDYpsBZxvfBoeygjb",
+      "postalAddress": {
+        "addressCountry": "Germany",
+        "postalCode": "10719",
+        "streetAddress": "Hindenburgstr. 10"
+      },
+      "webAddress": "ftp://ftp.is.co.za/rfc/rfc1808.txt"
+    },
+    "productIdentifier": "eOMtThyhVNLWUZNRcBaQKxI",
+    "puttingIntoService": "2025-06-17T11:14:27.698+02:00",
+    "warrentyPeriod": "--06"
+  },
+  "Labels": {
+    "declarationOfConformity": "telnet://192.0.2.16:80/",
+    "labels": [
+      {
+        "labelingMeaning": {
+          "en": "Separate Collection"
+        },
+        "labelingSubject": "SeparateCollection",
+        "labelingSymbol": "http://www.ietf.org/rfc/rfc2396.txt"
+      }
+    ],
+    "resultOfTestReport": "ftp://ftp.is.co.za/rfc/rfc1808.txt"
+  },
+  "MaterialComposition": {
+    "batteryChemistry": {
+      "clearName": "Lithium nickel manganese cobalt oxides",
+      "shortName": "NMC"
+    },
+    "batteryMaterials": [
+      {
+        "batteryMaterialIdentifier": "7439-93-2 ",
+        "batteryMaterialLocation": {
+          "componentId": "eOMtThyhVNLWUZNRcBaQKxI",
+          "componentName": "Anode"
+        },
+        "batteryMaterialMass": 1.6111172e+38,
+        "batteryMaterialName": "Lithium",
+        "isCriticalRawMaterial": true
+      }
+    ],
+    "hazardousSubstances": [
+      {
+        "hazardousSubstanceClass": "AcuteToxicity",
+        "hazardousSubstanceConcentration": -1.7976931348623157e+308,
+        "hazardousSubstanceIdentifier": "37-70-2",
+        "hazardousSubstanceImpact": [
+          "JxkyvRnL"
+        ],
+        "hazardousSubstanceLocation": {
+          "componentId": "RYtGKbgicZaHCBRQDSx",
+          "componentName": "Anode"
+        },
+        "hazardousSubstanceName": "yedUsFwdkelQbxeTeQOvaScfqIOOmaa"
+      }
+    ]
+  },
+  "Performance": {
+    "batteryCondition": {
+      "capacityFade": {
+        "capacityFadeValue": 1.8033356e+38,
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00"
+      },
+      "capacityThroughput": {
+        "capacityThroughputValue": -2.5806616e+38,
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00"
+      },
+      "currentSelfDischargingRate": {
+        "currentSelfDischargingRateValue": -3.2953987e+38,
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00"
+      },
+      "energyThroughput": {
+        "energyThroughputValue": -1.8565108e+38,
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00"
+      },
+      "evolutionOfSelfDischarge": {
+        "evolutionOfSelfDischargeValue": -3.1783507e+38,
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00"
+      },
+      "internalResistanceIncrease": [
+        {
+          "batteryComponent": "pack",
+          "internalResistanceIncreaseValue": -1.0193953e+38,
+          "lastUpdate": "2025-08-08T16:19:26.601+02:00"
+        }
+      ],
+      "negativeEvents": [
+        {
+          "lastUpdate": "2025-08-08T16:19:26.601+02:00",
+          "negativeEvent": "eOMtThyhVNLWUZNRcBaQKxI"
+        }
+      ],
+      "numberOfFullCycles": {
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00",
+        "numberOfFullCyclesValue": -179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+      },
+      "remainingCapacity": {
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00",
+        "remainingCapacityValue": -1.3989342e+38
+      },
+      "remainingEnergy": {
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00",
+        "remainingEnergyValue": 1.0879929e+38
+      },
+      "remainingPowerCapability": {
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00",
+        "remainingPowerCapabilityValue": {
+          "atSoC": 1.438028e+38,
+          "powerCapabilityAt": 1.3009944e+38,
+          "rPCLastUpdated": "2025-08-08T16:19:26.601+02:00"
+        }
+      },
+      "remainingRoundTripEnergyEfficiency": {
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00",
+        "remainingRoundTripEnergyEfficiencyValue": 2.3905777e+38
+      },
+      "stateOfCertifiedEnergy": {
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00",
+        "stateOfCertifiedEnergyValue": -3.5870918e+36
+      },
+      "stateOfCharge": {
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00",
+        "stateOfChargeValue": -5.470582e+37
+      },
+      "temperatureInformation": {
+        "lastUpdate": "2025-08-08T16:19:26.601+02:00",
+        "timeExtremeHighTemp": -1.7976931348623157e+308,
+        "timeExtremeHighTempCharging": -1.7976931348623157e+308,
+        "timeExtremeLowTemp": -1.7976931348623157e+308,
+        "timeExtremeLowTempCharging": -1.7976931348623157e+308
+      }
+    },
+    "batteryTechicalProperties": {
+      "cRate": -3.2059965e+38,
+      "cRateLifeCycleTest": -2.1743308e+37,
+      "capacityThresholdForExhaustion": -1.7976931348623157e+308,
+      "expectedLifetime": -7459,
+      "expectedNumberOfCycles": -1080408238430575992,
+      "initialInternalResistance": [
+        {
+          "batteryComponent": "pack",
+          "ohmicResistance": -1.7976931348623157e+308
+        }
+      ],
+      "initialSelfDischarge": -1.7976931348623157e+308,
+      "lifetimeReferenceTest": "telnet://192.0.2.16:80/",
+      "maximumVoltage": -3.0514177e+38,
+      "minimumVoltage": -2.6049251e+37,
+      "nominalVoltage": -7.7987036e+37,
+      "originalPowerCapability": [
+        {
+          "atSoC": -1.7978324e+38,
+          "powerCapabilityAt": 4.9125867e+37
+        }
+      ],
+      "powerCapabilityRatio": 2.072918e+38,
+      "powerFade": -2.4650906e+38,
+      "ratedCapacity": 2.2962742e+38,
+      "ratedEnergy": 1.1467267e+38,
+      "ratedMaximumPower": -1.7976931348623157e+308,
+      "roundTripEfficiencyFade": -3.2005423e+38,
+      "roundTripEfficiencyat50PerCentCycleLife": 8.719512e+37,
+      "roundtripEfficiency": 2.9499142e+38,
+      "temperatureRangeIdleState": {
+        "maximum": 200.0,
+        "minimum": -100.0
+      }
+    }
+  },
+  "SupplyChainDueDiligence": {
+    "supplyChainDueDiligenceReport": "telnet://192.0.2.16:80/",
+    "supplyChainIndicies": 2.1624482e+38,
+    "thirdPartyAussurances": "ftp://ftp.is.co.za/rfc/rfc1808.txt"
+  }
+}

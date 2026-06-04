@@ -1,0 +1,28 @@
+{
+  "name": "battery-passport-model-generator",
+  "version": "0.1.0",
+  "description": "Generate Mongoose + Zod models from a composed Battery Passport JSON Schema (see ../BatteryPass/composed-schema<version>.json).",
+  "type": "module",
+  "bin": {
+    "model-generator": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "generate": "tsx src/cli.ts"
+  },
+  "peerDependencies": {
+    "mongoose": ">=7",
+    "zod": ">=3"
+  },
+  "peerDependenciesMeta": {
+    "mongoose": { "optional": true },
+    "zod": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.0"
+  }
+}

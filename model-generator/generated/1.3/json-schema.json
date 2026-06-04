@@ -1,0 +1,1099 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BatteryPassport",
+  "type": "object",
+  "description": "EU Battery Passport composed schema (v1.3)",
+  "properties": {
+    "CarbonFootprint": {
+      "type": "object",
+      "description": "The battery passport must contain carbon footprint per functional unit of the battery as declared in the battery carbon footprint declaration in accordance with the entry into force of the implementing acts on the format of declaration. Reference: REGULATION (EU) 2023/1542 aka EU Battery Regulation",
+      "properties": {
+        "batteryCarbonFootprint": {
+          "type": "number"
+        },
+        "carbonFootprintPerLifecycleStage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "The carbon footprint of the battery as share of total Battery Carbon Footprint, differentiated per life cycle stage raw material extraction, main production, distribution and end of life and recycling.",
+            "properties": {
+              "lifecycleStage": {
+                "type": "string",
+                "enum": [
+                  "RawMaterialExtraction",
+                  "MainProduction",
+                  "Distribution",
+                  "Recycling"
+                ]
+              },
+              "carbonFootprint": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "lifecycleStage",
+              "carbonFootprint"
+            ]
+          }
+        },
+        "carbonFootprintPerformanceClass": {
+          "type": "string"
+        },
+        "carbonFootprintStudy": {
+          "type": "string",
+          "format": "uri"
+        },
+        "absoluteCarbonFootprint": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "batteryCarbonFootprint",
+        "carbonFootprintPerLifecycleStage",
+        "carbonFootprintPerformanceClass",
+        "carbonFootprintStudy"
+      ]
+    },
+    "Circularity": {
+      "type": "object",
+      "description": "Dismantling information (including at least: exploded diagrams of the battery system/pack showing the location of battery cells; disassembly sequences; type and number of fastening techniques to be unlocked; tools required for disassembly; warnings if risk of damaging parts exists; amount of cells used and layout); part numbers for components and contact details of sources for replacement spares; safety measures (Annex XIII (2b-d)); usable extinguishing agent (Annex VI, Part A(9)). 2024 Circulor (for and on behalf of the Battery Pass Consortium). This work is licensed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold commercially and is given appropriate attribution.",
+      "properties": {
+        "dismantlingAndRemovalInformation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Dismantling and Removal information, including at least:- Exploded diagrams of the battery system/pack showing the location of battery cells- Disassembly sequences- Type and number of fastening techniques to be unlocked- Tools required for disassembly- Warnings if risk of damaging parts exists- Amount of cells used and layoutEUBR: Annex XIII (2c)",
+            "properties": {
+              "documentType": {
+                "type": "string",
+                "enum": [
+                  "BillOfMaterial",
+                  "Model3D",
+                  "DismantlingManual",
+                  "RemovalManual",
+                  "OtherManual",
+                  "Drawing"
+                ]
+              },
+              "mimeType": {
+                "type": "string"
+              },
+              "documentURL": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "documentType",
+              "mimeType",
+              "documentURL"
+            ]
+          }
+        },
+        "sparePartSources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "The part numbers for components should be provided together with the postal address, e-mail address and web address of the sources for spare parts.",
+            "properties": {
+              "nameOfSupplier": {
+                "type": "string"
+              },
+              "addressOfSupplier": {
+                "type": "object",
+                "description": "Postal address of supplier for spare parts.",
+                "properties": {
+                  "addressCountry": {
+                    "type": "string"
+                  },
+                  "postalCode": {
+                    "type": "string"
+                  },
+                  "streetAddress": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "addressCountry",
+                  "postalCode",
+                  "streetAddress"
+                ]
+              },
+              "emailAddressOfSupplier": {
+                "type": "string"
+              },
+              "supplierWebAddress": {
+                "type": "string",
+                "format": "uri"
+              },
+              "components": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "partName": {
+                      "type": "string"
+                    },
+                    "partNumber": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "partName",
+                    "partNumber"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "nameOfSupplier",
+              "addressOfSupplier",
+              "emailAddressOfSupplier",
+              "supplierWebAddress",
+              "components"
+            ]
+          }
+        },
+        "recycledContent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "A battery passport must include recycled content information.\n\nThe content information must include the percentage share of nickel that is present in active materials and that has been recovered from battery manufacturing waste, for each battery model per year and per manufacturing plant.",
+            "properties": {
+              "preConsumerShare": {
+                "type": "number"
+              },
+              "recycledMaterial": {
+                "type": "string",
+                "enum": [
+                  "Cobalt",
+                  "Nickel",
+                  "Lithium",
+                  "Lead",
+                  "Cobalt",
+                  "Nickel",
+                  "Lithium",
+                  "Lead"
+                ]
+              },
+              "postConsumerShare": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "preConsumerShare",
+              "recycledMaterial",
+              "postConsumerShare"
+            ]
+          }
+        },
+        "safetyMeasures": {
+          "type": "object",
+          "description": "The safety measures should be provided via the instruction manual as URL linking to PDF.",
+          "properties": {
+            "safetyInstructions": {
+              "type": "string",
+              "format": "uri"
+            },
+            "extinguishingAgents": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "safetyInstructions",
+            "extinguishingAgents"
+          ]
+        },
+        "endOfLifeInformation": {
+          "type": "object",
+          "description": "Producer or producer responsibility organisations shall make information available to distributors and end-users on: the role of end-users in contributing to waste prevention, including by information on good practices and recommendations concerning the use of batteries aiming at extending their use phase and the possibilities of re-use, preparing for re-use, preparing for repurpose, repurposing and remanufacturing.\n\nDIN DKE Spec 99100 chapter reference: 6.6.3.2 - 6.6.3.4",
+          "properties": {
+            "wastePrevention": {
+              "type": "string",
+              "format": "uri"
+            },
+            "separateCollection": {
+              "type": "string",
+              "format": "uri"
+            },
+            "informationOnCollection": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "wastePrevention",
+            "separateCollection",
+            "informationOnCollection"
+          ]
+        },
+        "renewableContent": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "dismantlingAndRemovalInformation",
+        "sparePartSources",
+        "recycledContent",
+        "safetyMeasures",
+        "endOfLifeInformation",
+        "renewableContent"
+      ]
+    },
+    "GeneralProductInformation": {
+      "type": "object",
+      "description": "Mandatory data: Product identification; manufacturer?s identification; manufacturing place; manufacturing date; battery category; battery weight; battery status (Annex VI, Part A and Annex XIII)\nCopyright ? 2023 Circulor (for and on behalf of the Battery Pass Consortium). This work is li-censed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold com-mercially and is given appropriate attribution.",
+      "properties": {
+        "productIdentifier": {
+          "type": "string"
+        },
+        "batteryPassportIdentifier": {
+          "type": "string"
+        },
+        "batteryModelIdentifier": {
+          "type": "string"
+        },
+        "batterySerialNumber": {
+          "type": "string"
+        },
+        "batteryCategory": {
+          "type": "string",
+          "enum": [
+            "lmt",
+            "ev",
+            "industrial",
+            "stationary"
+          ]
+        },
+        "manufacturerInformation": {
+          "type": "object",
+          "description": "Unambiguous identification of the manufacturer of the battery, suggested via a unique operator identifier (as \"unique string of characters for the identification of actors involved in the value chain of products\", ESPR Art. 2(32)). \n\nDIN DKE Spec chapter reference: 6.1.2.4",
+          "properties": {
+            "contactName": {
+              "type": "string"
+            },
+            "postalAddress": {
+              "type": "object",
+              "properties": {
+                "addressCountry": {
+                  "type": "string"
+                },
+                "postalCode": {
+                  "type": "string"
+                },
+                "streetAddress": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "addressCountry",
+                "postalCode",
+                "streetAddress"
+              ]
+            },
+            "identifier": {
+              "type": "string"
+            },
+            "emailAddress": {
+              "type": "string"
+            },
+            "webAddress": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "contactName",
+            "postalAddress",
+            "identifier"
+          ]
+        },
+        "manufacturingDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "batteryStatus": {
+          "type": "string",
+          "enum": [
+            "Original",
+            "Repurposed",
+            "Reused",
+            "Remanufactured",
+            "Waste"
+          ]
+        },
+        "batteryMass": {
+          "type": "number"
+        },
+        "manufacturingPlace": {
+          "type": "object",
+          "description": "Unambiguous identification of the manufacturing facility (e.g. country, city, street, building (if needed)), suggested via a unique facility identifier (as \"unique string of characters for the identification of locations or buildings involved in the value chain of a product or used by actors involved in the value chain of a product\", ESPR Art. 2(33)).\n\nDIN DKE Spec chapter reference: 6.1.3.1",
+          "properties": {
+            "addressCountry": {
+              "type": "string"
+            },
+            "postalCode": {
+              "type": "string"
+            },
+            "streetAddress": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "addressCountry",
+            "postalCode",
+            "streetAddress"
+          ]
+        },
+        "operatorInformation": {
+          "type": "object",
+          "description": "State the name, trade name or mark, postal address, web ad-dress, e-mail address. Suggested reporting via a unique operator identifier (see requirements of unique battery identifier).\n\nDIN DKE Spec chapter reference: 6.1.2.3",
+          "properties": {
+            "contactName": {
+              "type": "string"
+            },
+            "postalAddress": {
+              "type": "object",
+              "properties": {
+                "addressCountry": {
+                  "type": "string"
+                },
+                "postalCode": {
+                  "type": "string"
+                },
+                "streetAddress": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "addressCountry",
+                "postalCode",
+                "streetAddress"
+              ]
+            },
+            "identifier": {
+              "type": "string"
+            },
+            "emailAddress": {
+              "type": "string"
+            },
+            "webAddress": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "contactName",
+            "postalAddress",
+            "identifier"
+          ]
+        },
+        "puttingIntoService": {
+          "type": "string"
+        },
+        "warrentyPeriod": {
+          "type": "string"
+        },
+        "dppSchemaVersion": {
+          "type": "string"
+        },
+        "dppStatus": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Inactive",
+            "Expired"
+          ]
+        },
+        "dppGranularity": {
+          "type": "string",
+          "enum": [
+            "Model",
+            "Batch",
+            "Item"
+          ]
+        },
+        "dppLastUpdate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "facilityIdentifier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "productIdentifier",
+        "batteryPassportIdentifier",
+        "batteryModelIdentifier",
+        "batterySerialNumber",
+        "batteryCategory",
+        "manufacturerInformation",
+        "manufacturingDate",
+        "batteryStatus",
+        "batteryMass",
+        "manufacturingPlace",
+        "operatorInformation",
+        "puttingIntoService",
+        "warrentyPeriod"
+      ]
+    },
+    "Labels": {
+      "type": "object",
+      "description": "Data model for battery labels and conformity\n\nCopyright 2024 Circulor (for and on behalf of the Battery Pass Consortium). This work is li-censed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold com-mercially and is given appropriate attribution.",
+      "properties": {
+        "declarationOfConformity": {
+          "type": "string",
+          "format": "uri"
+        },
+        "resultOfTestReport": {
+          "type": "string",
+          "format": "uri"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Entity for the definition required battery labeling",
+            "properties": {
+              "labelingSymbol": {
+                "type": "string",
+                "format": "uri"
+              },
+              "labelingMeaning": {
+                "type": "object",
+                "description": "Describes a Property which contains plain text in multiple languages. This is intended exclusively for human readable strings, not for identifiers, measurement values, etc.",
+                "properties": {}
+              },
+              "labelingSubject": {
+                "type": "string",
+                "enum": [
+                  "SeparateCollection",
+                  "HazardousMaterial",
+                  "CarbonFootPrint",
+                  "ExtinguishingAgent"
+                ]
+              }
+            },
+            "required": [
+              "labelingSymbol",
+              "labelingMeaning",
+              "labelingSubject"
+            ]
+          }
+        }
+      },
+      "required": [
+        "declarationOfConformity",
+        "resultOfTestReport",
+        "labels"
+      ]
+    },
+    "MaterialComposition": {
+      "type": "object",
+      "description": "Mandatory data: Battery chemistry; critical raw materials; materials used in the cathode, anode, and \nelectrolyte; hazardous substances; impact of substances on the environment and on human health or \nsafety\n\nCopyright ? 2024 Circulor (for and on behalf of the Battery Pass Consortium). This work is li-censed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold com-mercially and is given appropriate attribution.",
+      "properties": {
+        "batteryChemistry": {
+          "type": "object",
+          "description": "Detailed composition, including materials used in the cathode, anode, and electrolyte.\nAll common cells have two electrodes and an electrolyte. The specific combination of materials used to make these components is called \"chemistry.\" A cell's chemistry largely determines its properties, while most variations within it are caused by additives, purification, and design elements.\n\nEUBR: Annex XIII (1b) ? Annex VI Part A (7)",
+          "properties": {
+            "shortName": {
+              "type": "string"
+            },
+            "clearName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "shortName",
+            "clearName"
+          ]
+        },
+        "batteryMaterials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "batteryMaterialLocation": {
+                "type": "object",
+                "description": "Battery component that includes the material",
+                "properties": {
+                  "componentName": {
+                    "type": "string"
+                  },
+                  "componentId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "componentName"
+                ]
+              },
+              "batteryMaterialIdentifier": {
+                "type": "string"
+              },
+              "batteryMaterialName": {
+                "type": "string"
+              },
+              "batteryMaterialMass": {
+                "type": "number"
+              },
+              "isCriticalRawMaterial": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "batteryMaterialLocation",
+              "batteryMaterialIdentifier",
+              "batteryMaterialName",
+              "batteryMaterialMass",
+              "isCriticalRawMaterial"
+            ]
+          }
+        },
+        "hazardousSubstances": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Hazardous substances (No. 19-23): Name (agreed substance nomenclature, e.g. IUPAC or chemical name) all hazardous substance (as ?any substance that poses a threat to human health and the environment?). Suggested above 0.1 % weight by weight within each (sub-)component.",
+            "properties": {
+              "hazardousSubstanceClass": {
+                "type": "string",
+                "enum": [
+                  "AcuteToxicity",
+                  "SkinCorrosionOrIrritation",
+                  "EyeDamageOrIrritation"
+                ]
+              },
+              "hazardousSubstanceName": {
+                "type": "string"
+              },
+              "hazardousSubstanceConcentration": {
+                "type": "number"
+              },
+              "hazardousSubstanceImpact": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "hazardousSubstanceLocation": {
+                "type": "object",
+                "description": "Battery component that includes the material",
+                "properties": {
+                  "componentName": {
+                    "type": "string"
+                  },
+                  "componentId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "componentName"
+                ]
+              },
+              "hazardousSubstanceIdentifier": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "hazardousSubstanceClass",
+              "hazardousSubstanceName",
+              "hazardousSubstanceConcentration",
+              "hazardousSubstanceImpact",
+              "hazardousSubstanceLocation",
+              "hazardousSubstanceIdentifier"
+            ]
+          }
+        }
+      },
+      "required": [
+        "batteryChemistry",
+        "batteryMaterials",
+        "hazardousSubstances"
+      ]
+    },
+    "Performance": {
+      "type": "object",
+      "description": "Battery performance and durability data model",
+      "properties": {
+        "batteryTechnicalProperties": {
+          "type": "object",
+          "description": "Covers all Capability related data attributes",
+          "properties": {
+            "originalPowerCapability": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "atSoC": {
+                    "type": "number"
+                  },
+                  "powerCapabilityAt": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "atSoC",
+                  "powerCapabilityAt"
+                ]
+              }
+            },
+            "ratedMaximumPower": {
+              "type": "number"
+            },
+            "powerCapabilityRatio": {
+              "type": "number"
+            },
+            "ratedEnergy": {
+              "type": "number"
+            },
+            "expectedNumberOfCycles": {
+              "type": "number"
+            },
+            "initialSelfDischarge": {
+              "type": "number"
+            },
+            "roundtripEfficiency": {
+              "type": "number"
+            },
+            "ratedCapacity": {
+              "type": "number"
+            },
+            "initialInternalResistance": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "description": "The internal resistance is a quotient of change of voltage of a battery by the corresponding change in discharge current under specified conditions (IEV 482 03 36).",
+                "properties": {
+                  "ohmicResistance": {
+                    "type": "number"
+                  },
+                  "batteryComponent": {
+                    "type": "string",
+                    "enum": [
+                      "pack",
+                      "module",
+                      "cell"
+                    ]
+                  }
+                },
+                "required": [
+                  "ohmicResistance",
+                  "batteryComponent"
+                ]
+              }
+            },
+            "expectedLifetime": {
+              "type": "number"
+            },
+            "cRate": {
+              "type": "number"
+            },
+            "nominalVoltage": {
+              "type": "number"
+            },
+            "minimumVoltage": {
+              "type": "number"
+            },
+            "maximumVoltage": {
+              "type": "number"
+            },
+            "capacityThresholdForExhaustion": {
+              "type": "number"
+            },
+            "lifetimeReferenceTest": {
+              "type": "string",
+              "format": "uri"
+            },
+            "cRateLifeCycleTest": {
+              "type": "number"
+            },
+            "temperatureRangeIdleState": {
+              "type": "object",
+              "description": "Upper an lower boundary of the surrounding temperature range, which the battery can safely withstand. \n\nDIN DKE Spec 99100 chapter reference: 6.7.6.3-4",
+              "properties": {
+                "minimum": {
+                  "type": "number"
+                },
+                "maximum": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "minimum",
+                "maximum"
+              ]
+            },
+            "roundTripEfficiencyAt50PercentCycleLife": {
+              "type": "number"
+            },
+            "roundTripEfficiencyFade": {
+              "type": "number"
+            },
+            "powerFade": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "originalPowerCapability",
+            "ratedMaximumPower",
+            "powerCapabilityRatio",
+            "ratedEnergy",
+            "expectedNumberOfCycles",
+            "initialSelfDischarge",
+            "roundtripEfficiency",
+            "ratedCapacity",
+            "initialInternalResistance",
+            "expectedLifetime",
+            "nominalVoltage",
+            "minimumVoltage",
+            "maximumVoltage",
+            "capacityThresholdForExhaustion",
+            "lifetimeReferenceTest",
+            "cRateLifeCycleTest",
+            "temperatureRangeIdleState",
+            "roundTripEfficiencyAt50PercentCycleLife",
+            "roundTripEfficiencyFade",
+            "powerFade"
+          ]
+        },
+        "batteryCondition": {
+          "type": "object",
+          "description": "Covers all battery lifetime relevant properties",
+          "properties": {
+            "energyThroughput": {
+              "type": "object",
+              "description": "The data attribute should be reported as measured for further potential processing. In addition, the normalisation by capacity may add a further useful value that ensures comparability among battery sizes.\n\nDIN DKE Spec 99100 chapter reference: 6.7.6.7",
+              "properties": {
+                "energyThroughputValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "energyThroughputValue",
+                "lastUpdate"
+              ]
+            },
+            "capacityThroughput": {
+              "type": "object",
+              "description": "Capacity throughput.",
+              "properties": {
+                "capacityThroughputValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "capacityThroughputValue",
+                "lastUpdate"
+              ]
+            },
+            "numberOfFullCycles": {
+              "type": "object",
+              "description": "- Information and data as a result of its use, including the number of charging and discharging cycles.",
+              "properties": {
+                "numberOfFullCyclesValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "numberOfFullCyclesValue",
+                "lastUpdate"
+              ]
+            },
+            "stateOfCertifiedEnergy": {
+              "type": "object",
+              "description": "Definition based on UNECE GTR 22: The measured or on-board UBE performance at a specific point in its lifetime, expressed as a percentage of the certified usable battery energy.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.7",
+              "properties": {
+                "stateOfCertifiedEnergyValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "stateOfCertifiedEnergyValue",
+                "lastUpdate"
+              ]
+            },
+            "capacityFade": {
+              "type": "object",
+              "description": "The capacity fade is the Decrease over time and upon usage in the amount of charge that a battery can deliver at the rated voltage, with respect to the original rated capacity (see BattReg Annex IV (2)) as declared by the manufacturer.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.4",
+              "properties": {
+                "capacityFadeValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "capacityFadeValue",
+                "lastUpdate"
+              ]
+            },
+            "remainingEnergy": {
+              "type": "object",
+              "description": "Definition from UNECE GTR 22, applicable only to EVs.\nThe energy supplied by the battery from the beginning of the test procedure used for certification until the applicable break-off criterion of the test procedure used for certification is reached.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.6",
+              "properties": {
+                "remainingEnergyValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "remainingEnergyValue",
+                "lastUpdate"
+              ]
+            },
+            "remainingCapacity": {
+              "type": "object",
+              "description": "The in-use data attribute on capacity, corresponding with the definition of rated capacity.\n\nDIN DKE Spec 99100 chapter reference: 6.7.2.3",
+              "properties": {
+                "remainingCapacityValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "remainingCapacityValue",
+                "lastUpdate"
+              ]
+            },
+            "negativeEvents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "negativeEvent": {
+                    "type": "string"
+                  },
+                  "lastUpdate": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "negativeEvent",
+                  "lastUpdate"
+                ]
+              }
+            },
+            "temperatureInformation": {
+              "type": "object",
+              "description": "The battery passport must include periodically recorded information on the operating environmental conditions, including temperature.\n\nDIN DKE Spec 99100 chapter reference: 6.7.7.5 - 8",
+              "properties": {
+                "timeExtremeHighTemp": {
+                  "type": "number"
+                },
+                "timeExtremeLowTemp": {
+                  "type": "number"
+                },
+                "timeExtremeHighTempCharging": {
+                  "type": "number"
+                },
+                "timeExtremeLowTempCharging": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "timeExtremeHighTemp",
+                "timeExtremeLowTemp",
+                "timeExtremeHighTempCharging",
+                "timeExtremeLowTempCharging",
+                "lastUpdate"
+              ]
+            },
+            "remainingPowerCapability": {
+              "type": "object",
+              "description": "'- Original power capability (in Watts) and limits, with temperature range when relevant.\n- The amount of energy that a battery is capable to provide over a given period of time under reference conditions.\n- Power capability at 80% and 20% state of charge.\n\nDIN DKE Spec 99100 chapter reference: 6.7.3.3",
+              "properties": {
+                "remainingPowerCapabilityValue": {
+                  "type": "object",
+                  "properties": {
+                    "atSoC": {
+                      "type": "number"
+                    },
+                    "powerCapabilityAt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "atSoC",
+                    "powerCapabilityAt"
+                  ]
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "remainingPowerCapabilityValue",
+                "lastUpdate"
+              ]
+            },
+            "evolutionOfSelfDischarge": {
+              "type": "object",
+              "description": "Evolution of self-discharge rates is the change of self-discharge over time and usage, as percentage calculated from the initial and current self-discharge rate.\n\nDIN DKE Spec 99100 chapter reference: 6.7.4.8",
+              "properties": {
+                "evolutionOfSelfDischargeValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "evolutionOfSelfDischargeValue",
+                "lastUpdate"
+              ]
+            },
+            "currentSelfDischargingRate": {
+              "type": "object",
+              "description": "The current self-discharge rate is the change of the self-discharge rate in an idle state of the battery in reference conditions (temperature etc.) at aging parameter x, e.g. after a certain amount of storage time or, number of cycles.\n\nDIN DKE Spec 99100 chapter reference: 6.7.4.7",
+              "properties": {
+                "currentSelfDischargingRateValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "currentSelfDischargingRateValue",
+                "lastUpdate"
+              ]
+            },
+            "internalResistanceIncrease": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "internalResistanceIncreaseValue": {
+                    "type": "number"
+                  },
+                  "lastUpdate": {
+                    "type": "string"
+                  },
+                  "batteryComponent": {
+                    "type": "string",
+                    "enum": [
+                      "pack",
+                      "module",
+                      "cell"
+                    ]
+                  }
+                },
+                "required": [
+                  "internalResistanceIncreaseValue",
+                  "lastUpdate",
+                  "batteryComponent"
+                ]
+              }
+            },
+            "remainingRoundTripEnergyEfficiency": {
+              "type": "object",
+              "description": "The battery passport shall include information, where possible, about the remaining round trip energy efficiency as information on the state of health of the battery \n\nThe update frequency of remaining round trip energy efficiency should be aligned with the update frequency of round trip energy efficiency fade and should be provided upon change of the battery status.\n\nDIN DKE Spec 99100 chapter reference: 6.7.4.4",
+              "properties": {
+                "remainingRoundTripEnergyEfficiencyValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "remainingRoundTripEnergyEfficiencyValue",
+                "lastUpdate"
+              ]
+            },
+            "stateOfCharge": {
+              "type": "object",
+              "description": "The Battery Pass consortium proposes to change the definition to: \"available capacity in a battery expressed as a percentage of remaining capacity\" to reflect use of SoC in practice.  \n\nDIN DKE Spec 99100 chapter reference: 6.7.2.8",
+              "properties": {
+                "stateOfChargeValue": {
+                  "type": "number"
+                },
+                "lastUpdate": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "stateOfChargeValue",
+                "lastUpdate"
+              ]
+            }
+          },
+          "required": [
+            "energyThroughput",
+            "capacityThroughput",
+            "numberOfFullCycles",
+            "stateOfCertifiedEnergy",
+            "capacityFade",
+            "remainingEnergy",
+            "remainingCapacity",
+            "negativeEvents",
+            "temperatureInformation",
+            "remainingPowerCapability",
+            "evolutionOfSelfDischarge",
+            "currentSelfDischargingRate",
+            "internalResistanceIncrease",
+            "remainingRoundTripEnergyEfficiency",
+            "stateOfCharge"
+          ]
+        }
+      },
+      "required": [
+        "batteryTechnicalProperties",
+        "batteryCondition"
+      ]
+    },
+    "SupplyChainDueDiligence": {
+      "type": "object",
+      "description": "Data model for Battery due diligence\n\nCopyright ? 2024 Circulor (for and on behalf of the Battery Pass Consortium). This work is li-censed under a Creative Commons License Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). Readers may reproduce material for their own publications, as long as it is not sold com-mercially and is given appropriate attribution.",
+      "properties": {
+        "supplyChainDueDiligenceReport": {
+          "type": "string",
+          "format": "uri"
+        },
+        "thirdPartyAussurances": {
+          "type": "string",
+          "format": "uri"
+        },
+        "supplyChainIndicies": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "supplyChainDueDiligenceReport"
+      ]
+    }
+  },
+  "required": [
+    "CarbonFootprint",
+    "Circularity",
+    "GeneralProductInformation",
+    "Labels",
+    "MaterialComposition",
+    "Performance",
+    "SupplyChainDueDiligence"
+  ]
+}

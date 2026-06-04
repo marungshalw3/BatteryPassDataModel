@@ -134,6 +134,99 @@ Regenerate afterwards with `./convert.sh`.
 
 ---
 
+## Building a passport sample — `make-passport.sh`
+
+Concatenates the seven aspect **sample payloads** for a version into one
+passport document, shaped `{ "<Aspect>": <aspect sample json>, ... }`:
+
+```bash
+./make-passport.sh 1.3                 # -> passport1.3.json
+./make-passport.sh 1.2                 # -> passport1.2.json (Performance resolves to 1.2.1)
+./make-passport.sh 1.3 /tmp/p.json     # custom output path
+```
+
+Minor versions (`1.2`, `1.3`) resolve to the highest matching patch per aspect.
+It reads whichever sample the `gen/` folder has — `<base>.json` (from
+`convert.sh`) or `<base>-payload.json` (consortium bundle) — and handles
+UTF-8/UTF-16 transparently. Run `convert.sh` first if a version's samples are
+missing.
+
+---
+
+## Bundling schemas — `make-schema.sh`
+
+Like `make-passport.sh`, but bundles the seven aspect **JSON Schemas** (not
+sample payloads) into `schema<version>.json`, shaped `{ "<Aspect>": <JSON
+Schema>, ... }`. This is the input for an **exact** structural diff (types +
+required/optional, no sample noise).
+
+```bash
+./make-schema.sh 1.2     # -> schema1.2.json
+./make-schema.sh 1.3     # -> schema1.3.json
+```
+
+It prefers `<base>.schema` (from `convert.sh`) over the consortium
+`<base>-schema.json` bundle. For a true diff, regenerate both versions with the
+same CLI first (`./convert.sh . -- schema`) — the shipped consortium gen can be
+stale relative to the current `.ttl`.
+
+---
+
+## Composed (validatable) schema — `make-composed-schema.sh`
+
+`make-schema.sh` produces a *bundle* (`{ "<Aspect>": <schema> }`) whose internal
+`$ref`s dangle once nested — fine for diffing, **not** valid for validation.
+`make-composed-schema.sh` produces ONE **valid, self-contained draft-07 schema**
+that validates a whole passport document (the shape from `make-passport.sh`):
+
+```bash
+./make-composed-schema.sh 1.3    # -> composed-schema1.3.json
+./make-composed-schema.sh 1.2    # -> composed-schema1.2.json
+```
+
+It relocates every aspect's `components/schemas` into a shared root `$defs`
+(namespaced `<Aspect>__<Name>`), rewrites the `$ref` pointers, and normalizes
+SAMM's draft-04 constructs (boolean `exclusiveMinimum/Maximum`) to draft-07. The
+script self-checks validity and that no `$ref` dangles. Example — validate a
+passport with any draft-07 validator:
+
+```python
+from jsonschema import Draft7Validator
+import json
+schema = json.load(open("composed-schema1.3.json"))
+doc    = json.load(open("passport1.3.json"))
+errs   = list(Draft7Validator(schema).iter_errors(doc))   # [] = valid
+```
+
+---
+
+## Visualizing attribute changes — `attribute-diff.html`
+
+A self-contained page that loads two bundles and shows the changes
+(added / removed / modified) grouped by aspect. The **Source** selector picks:
+
+- **schemas** (`schema<v>.json`) — **recommended**: exact diff of structure,
+  type, and required ↔ optional.
+- **samples** (`passport<v>.json`) — structural diff of sample payloads (handy,
+  but optional fields present in one sample only show as add/remove).
+
+```bash
+# build bundles + regenerate schemas with one CLI for an apples-to-apples diff
+./convert.sh . -- schema
+./make-schema.sh 1.2 && ./make-schema.sh 1.3
+./make-passport.sh 1.2 && ./make-passport.sh 1.3   # (optional, for samples mode)
+# serve (browsers block file:// fetches) and open the page
+python3 -m http.server 8777
+# open http://localhost:8777/attribute-diff.html → Source=schemas, From=1.2, To=1.3 → Compare
+```
+
+You can also pick two JSON files manually (no server needed); the page
+auto-detects whether they are schemas or samples. Use "show unchanged" and the
+path filter to explore. In schema mode, modified rows show e.g.
+`string → array` and `optional → required`.
+
+---
+
 ## Notes & gotchas
 
 - **`java` format** is emitted as a package tree via `--output-directory`

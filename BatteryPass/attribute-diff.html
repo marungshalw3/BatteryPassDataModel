@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Battery Passport — Attribute Change Viewer</title>
+<style>
+  :root {
+    --bg:#0f1216; --panel:#171c22; --panel2:#1e252d; --line:#2a323c;
+    --txt:#e6edf3; --muted:#9aa7b4;
+    --add:#2ea043; --add-bg:#0e2a16; --rem:#f85149; --rem-bg:#2a1213;
+    --mod:#d29922; --mod-bg:#2a2210; --same:#6e7681;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt);
+    font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  header { padding:20px 24px; border-bottom:1px solid var(--line); background:var(--panel); }
+  h1 { margin:0 0 4px; font-size:18px; font-weight:650; }
+  .sub { color:var(--muted); font-size:13px; }
+  code { background:var(--panel2); padding:1px 5px; border-radius:4px; font-size:12px; }
+  .controls { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:14px; }
+  input[type=text], input[type=file], select { background:var(--panel2); border:1px solid var(--line);
+    color:var(--txt); border-radius:7px; padding:7px 10px; font-size:13px; }
+  input[type=text] { width:72px; }
+  button { background:#2563eb; color:#fff; border:0; border-radius:7px; padding:8px 14px;
+    font-size:13px; font-weight:600; cursor:pointer; }
+  button:hover { background:#1d4ed8; }
+  .arrow { color:var(--muted); }
+  main { padding:20px 24px; max-width:1100px; margin:0 auto; }
+  .summary { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
+  .chip { padding:8px 14px; border-radius:9px; font-weight:600; font-size:13px; border:1px solid var(--line); }
+  .chip b { font-size:16px; margin-right:6px; }
+  .chip.add { background:var(--add-bg); color:#7ee2a8; }
+  .chip.rem { background:var(--rem-bg); color:#ff9b95; }
+  .chip.mod { background:var(--mod-bg); color:#f0c674; }
+  .chip.same { background:var(--panel2); color:var(--muted); }
+  .toolbar { display:flex; gap:12px; align-items:center; margin-bottom:14px; flex-wrap:wrap; }
+  .toolbar label { color:var(--muted); font-size:13px; display:flex; gap:6px; align-items:center; }
+  .search { flex:1; min-width:200px; }
+  .search input { width:100%; }
+  details.aspect { background:var(--panel); border:1px solid var(--line); border-radius:10px; margin-bottom:12px; overflow:hidden; }
+  details.aspect > summary { padding:12px 16px; cursor:pointer; font-weight:650; list-style:none;
+    display:flex; align-items:center; gap:10px; }
+  details.aspect > summary::-webkit-details-marker { display:none; }
+  .counts { margin-left:auto; display:flex; gap:6px; }
+  .mini { font-size:11px; font-weight:700; padding:2px 7px; border-radius:20px; }
+  .mini.add { background:var(--add-bg); color:#7ee2a8; }
+  .mini.rem { background:var(--rem-bg); color:#ff9b95; }
+  .mini.mod { background:var(--mod-bg); color:#f0c674; }
+  table { width:100%; border-collapse:collapse; }
+  td { padding:7px 16px; border-top:1px solid var(--line); vertical-align:top; }
+  tr.add td:first-child { border-left:3px solid var(--add); }
+  tr.rem td:first-child { border-left:3px solid var(--rem); }
+  tr.mod td:first-child { border-left:3px solid var(--mod); }
+  tr.same td:first-child { border-left:3px solid transparent; }
+  .path { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; }
+  .badge { font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; white-space:nowrap; }
+  .badge.add { background:var(--add-bg); color:#7ee2a8; }
+  .badge.rem { background:var(--rem-bg); color:#ff9b95; }
+  .badge.mod { background:var(--mod-bg); color:#f0c674; }
+  .badge.same { background:var(--panel2); color:var(--muted); }
+  .kind { color:var(--muted); font-family:ui-monospace,monospace; font-size:12px; }
+  .empty { color:var(--muted); padding:40px; text-align:center; }
+  .note { color:var(--muted); font-size:12px; margin:10px 0 18px; padding:10px 14px;
+    background:var(--panel2); border:1px solid var(--line); border-radius:8px; }
+  .err { color:#ff9b95; }
+  .mode-tag { font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; background:#13304a; color:#7fb4ff; margin-left:8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Battery Passport — Attribute Change Viewer <span id="modeTag" class="mode-tag" hidden></span></h1>
+  <div class="sub">Diff two generated bundles by aspect. <b>schema</b> source = exact structure + type + required/optional; <b>samples</b> source = structural diff of sample payloads.</div>
+  <div class="controls">
+    <span class="sub">Source</span>
+    <select id="source"><option value="schema">schemas (schema&lt;v&gt;.json)</option><option value="passport">samples (passport&lt;v&gt;.json)</option></select>
+    <span class="sub">From</span><input id="from" type="text" value="1.2" />
+    <span class="arrow">→</span>
+    <span class="sub">To</span><input id="to" type="text" value="1.3" />
+    <button id="compare">Compare</button>
+    <span class="sub" style="margin-left:8px;">or load files:</span>
+    <input id="fileFrom" type="file" accept=".json" />
+    <input id="fileTo" type="file" accept=".json" />
+  </div>
+</header>
+<main>
+  <div id="status" class="note">Pick a <b>Source</b> and click <b>Compare</b> to load the two bundles from this folder (needs a local server, e.g. <code>python3 -m http.server</code>), or pick the two files manually.</div>
+  <div id="summary" class="summary" hidden></div>
+  <div id="toolbar" class="toolbar" hidden>
+    <label><input type="checkbox" id="showSame" /> show unchanged</label>
+    <div class="search"><input id="filter" type="text" placeholder="filter by path…" /></div>
+  </div>
+  <div id="results"></div>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+/* ---------- sample (value) walker ---------- */
+function valueKind(v){
+  if (Array.isArray(v)) return 'array';
+  if (v === null) return 'null';
+  if (typeof v === 'object') return 'object';
+  if (typeof v === 'boolean') return 'boolean';
+  if (typeof v === 'number') return 'number';
+  return 'string';
+}
+function walkValue(node, prefix, out){
+  const k = valueKind(node);
+  if (prefix) out.set(prefix, { kind:k });
+  if (k === 'object') for (const key of Object.keys(node)) walkValue(node[key], prefix ? prefix+'.'+key : key, out);
+  else if (k === 'array' && node.length) walkValue(node[0], prefix+'[]', out);
+}
+
+/* ---------- JSON-Schema walker (resolves $ref / allOf) ---------- */
+function resolveSchema(node, defs, seen){
+  let n = node, guard = 0;
+  while (n && guard++ < 100){
+    if (n.$ref){ const name = String(n.$ref).split('/').pop();
+      if (seen.has(name)) return { type:'object' }; seen.add(name); n = defs[name]; continue; }
+    if (Array.isArray(n.allOf) && n.allOf.length === 1){ n = n.allOf[0]; continue; }
+    break;
+  }
+  return n || {};
+}
+function schemaKind(n){
+  if (!n) return 'any';
+  if (n.enum) return 'enum';
+  if (n.type === 'object' || n.properties) return 'object';
+  if (n.type === 'array') return 'array';
+  if (n.type) return n.type;
+  return 'any';
+}
+function walkSchema(node, prefix, required, out, defs, seen){
+  const n = resolveSchema(node, defs, seen || new Set());
+  const k = schemaKind(n);
+  if (prefix) out.set(prefix, { kind:k, required:!!required });
+  if (k === 'object' && n.properties){
+    const req = new Set(n.required || []);
+    for (const key of Object.keys(n.properties))
+      walkSchema(n.properties[key], prefix ? prefix+'.'+key : key, req.has(key), out, defs, new Set());
+  } else if (k === 'array' && n.items){
+    walkSchema(n.items, prefix+'[]', required, out, defs, new Set());
+  }
+}
+
+function looksLikeSchema(v){
+  return v && typeof v === 'object' && (v.$schema || v.components || v.properties || v.type === 'object');
+}
+
+/* Flatten a {Aspect: node} bundle to Map<path,{kind,required?}> */
+function flatten(bundle){
+  const out = new Map();
+  const schemaMode = Object.values(bundle).some(looksLikeSchema);
+  for (const [aspect, node] of Object.entries(bundle)){
+    if (schemaMode){
+      const defs = (node.components && node.components.schemas) || node.$defs || {};
+      walkSchema(node, aspect, false, out, defs, new Set());
+    } else {
+      out.set(aspect, { kind:'object' });
+      walkValue(node, aspect, out);
+    }
+  }
+  return { map: out, schemaMode };
+}
+
+function diff(a, b){
+  const A = flatten(a), B = flatten(b);
+  const schemaMode = A.schemaMode && B.schemaMode;
+  const paths = new Set([...A.map.keys(), ...B.map.keys()]);
+  const rows = [];
+  for (const p of paths){
+    const ea = A.map.get(p), eb = B.map.get(p);
+    let status, detail = '';
+    if (!ea){ status = 'add'; detail = (schemaMode && eb.required ? 'required ' : '') + eb.kind; }
+    else if (!eb){ status = 'rem'; detail = (schemaMode && ea.required ? 'required ' : '') + ea.kind; }
+    else {
+      const typeChg = ea.kind !== eb.kind;
+      const reqChg = schemaMode && (ea.required !== eb.required);
+      status = (typeChg || reqChg) ? 'mod' : 'same';
+      const parts = [];
+      if (typeChg) parts.push(`${ea.kind} → ${eb.kind}`);
+      if (reqChg) parts.push(eb.required ? 'optional → required' : 'required → optional');
+      detail = parts.length ? parts.join(' · ') : ((schemaMode && ea.required ? 'required ' : '') + ea.kind);
+    }
+    rows.push({ path:p, aspect:p.split('.')[0].replace(/\[\]$/,''), status, detail });
+  }
+  rows.sort((x,y) => x.path.localeCompare(y.path));
+  return { rows, schemaMode };
+}
+
+let ALL = [];
+function render(){
+  const showSame = $('showSame').checked;
+  const q = $('filter').value.trim().toLowerCase();
+  const rows = ALL.filter(r => (showSame || r.status !== 'same') && (!q || r.path.toLowerCase().includes(q)));
+
+  const counts = { add:0, rem:0, mod:0, same:0 };
+  for (const r of ALL) counts[r.status]++;
+  $('summary').hidden = false; $('toolbar').hidden = false;
+  $('summary').innerHTML = `
+    <div class="chip add"><b>${counts.add}</b>Added</div>
+    <div class="chip rem"><b>${counts.rem}</b>Removed</div>
+    <div class="chip mod"><b>${counts.mod}</b>Modified</div>
+    <div class="chip same"><b>${counts.same}</b>Unchanged</div>`;
+
+  const byAspect = new Map();
+  for (const r of rows){ if(!byAspect.has(r.aspect)) byAspect.set(r.aspect, []); byAspect.get(r.aspect).push(r); }
+
+  const res = $('results');
+  if (byAspect.size === 0){ res.innerHTML = '<div class="empty">No changes match the current filter.</div>'; return; }
+
+  const label = { add:'added', rem:'removed', mod:'modified', same:'unchanged' };
+  let html = '';
+  for (const [aspect, list] of [...byAspect.entries()].sort()){
+    const c = { add:0, rem:0, mod:0 };
+    for (const r of list) if (r.status!=='same') c[r.status]++;
+    const open = (c.add+c.rem+c.mod) > 0 ? 'open' : '';
+    html += `<details class="aspect" ${open}><summary>${aspect}
+      <span class="counts">
+        ${c.add?`<span class="mini add">+${c.add}</span>`:''}
+        ${c.rem?`<span class="mini rem">−${c.rem}</span>`:''}
+        ${c.mod?`<span class="mini mod">~${c.mod}</span>`:''}
+      </span></summary><table>`;
+    for (const r of list){
+      const rel = r.path.slice(aspect.length).replace(/^\./,'') || '(root)';
+      html += `<tr class="${r.status}">
+        <td class="path">${rel}</td>
+        <td><span class="badge ${r.status}">${label[r.status]}</span></td>
+        <td><span class="kind">${r.detail}</span></td></tr>`;
+    }
+    html += '</table></details>';
+  }
+  res.innerHTML = html;
+}
+
+function show(a, b){
+  const d = diff(a, b);
+  ALL = d.rows;
+  $('modeTag').hidden = false;
+  $('modeTag').textContent = d.schemaMode ? 'schema diff' : 'sample diff';
+  render();
+}
+
+async function compareByVersion(){
+  const src = $('source').value, from = $('from').value.trim(), to = $('to').value.trim();
+  $('status').className = 'note';
+  $('status').textContent = `Loading ${src}${from}.json and ${src}${to}.json…`;
+  try {
+    const [ra, rb] = await Promise.all([fetch(`${src}${from}.json`), fetch(`${src}${to}.json`)]);
+    if (!ra.ok || !rb.ok) throw new Error('fetch failed');
+    show(await ra.json(), await rb.json());
+    $('status').textContent = `Comparing ${src}${from}.json → ${src}${to}.json`;
+  } catch (e){
+    $('status').className = 'note err';
+    $('status').innerHTML = `Could not fetch the files (browsers block <code>file://</code> fetches). Serve this folder with <code>python3 -m http.server</code> and reload, or use the two file pickers above.`;
+  }
+}
+
+function readFile(input){
+  return new Promise((resolve, reject) => {
+    const f = input.files[0]; if(!f) return reject();
+    const r = new FileReader();
+    r.onload = () => { try { resolve(JSON.parse(r.result)); } catch(e){ reject(e); } };
+    r.readAsText(f);
+  });
+}
+async function compareByFiles(){
+  try { const [a,b] = await Promise.all([readFile($('fileFrom')), readFile($('fileTo'))]);
+    show(a, b); $('status').className='note'; $('status').textContent='Comparing the two selected files.'; }
+  catch(e){ $('status').className='note err'; $('status').textContent='Select two valid JSON files.'; }
+}
+
+$('compare').addEventListener('click', compareByVersion);
+$('showSame').addEventListener('change', render);
+$('filter').addEventListener('input', render);
+function maybeFiles(){ if($('fileFrom').files[0] && $('fileTo').files[0]) compareByFiles(); }
+$('fileFrom').addEventListener('change', maybeFiles);
+$('fileTo').addEventListener('change', maybeFiles);
+</script>
+</body>
+</html>
